@@ -1,6 +1,7 @@
 import React from "react";
 import { ReviewCarouselComp } from "../components/ReviewCarouselComp";
 import { ReviewComp } from "../components/ReviewComp";
+import { CategoryComp } from "../components/CategoryComp";
 
 export const SignUp = () => {
   return (
@@ -24,6 +25,7 @@ export const SignUp = () => {
         rate={2}
         date={"March 29, 2023"}
       />
+      <CategoryComp categoryName={"bank"} />
     </div>
     //arilgaj boln
   );
