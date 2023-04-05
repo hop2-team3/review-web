@@ -23,7 +23,7 @@ export const ReviewComp = (props) => {
         </div>
         <h1 className="font-bold capitalize">{props.title}</h1>
         <p className="text-[16px] break-words hyphens-auto">{props.review}</p>
-        <div>
+        <div className="flex">
           <p className="font-bold">Date of experience:</p>
           <p>{props.date}</p>
         </div>
