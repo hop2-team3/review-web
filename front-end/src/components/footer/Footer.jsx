@@ -1,8 +1,8 @@
 import React from "react";
-import igLogo from "../assets/igLogo.png";
-import twtLogo from "../assets/twtLogo.png";
-import fbLogo from "../assets/fbLogo.png";
-const Footer = () => {
+import igLogo from "../../assets/igLogo.png";
+import twtLogo from "../../assets/twtLogo.png";
+import fbLogo from "../../assets/fbLogo.png";
+export const Footer = () => {
   return (
     <div>
       <div className="bg-cod-gray font-inter">
@@ -90,5 +90,3 @@ const Footer = () => {
     </div>
   );
 };
-
-export default Footer;

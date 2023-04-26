@@ -4,7 +4,7 @@ import { ExploreCategoriesComp } from "../components/ExploreCategoriesComp";
 export const CategoriesExplore = () => {
   return (
     <>
-      <div classNam="w-[screen] flex flex-col">
+      <div className="w-[screen] flex flex-col">
         <div className="h-[231px] w-[screen] bg-[#FFFFFF] flex flex-col text-center justify-center">
           <p className="font-[900] text-[40px] text-[#1C1C1C]">
             Best events & Entertainment

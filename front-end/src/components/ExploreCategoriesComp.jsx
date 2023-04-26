@@ -13,7 +13,7 @@ export const ExploreCategoriesComp = () => {
         <div className=" flex flex-row h-[98px] pl-4 ">
           <img className="h-[72px] w-[72px]" src={dugood}></img>
           <div className="flex flex-col h-[87px] pl-6 place-content-evenly ">
-            <p className-="h-[20px] w-[151px] font-[800] text-[15px]">
+            <p className="h-[20px] w-[151px] font-[800] text-[15px]">
               DuGood Credit Union
             </p>
             <div className="flex flex-row">

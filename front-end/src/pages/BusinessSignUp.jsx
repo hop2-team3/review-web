@@ -1,7 +1,7 @@
 import React from "react";
 import googleLogo from "../assets/googleLogo.png";
 
-const BusinessSignUp = () => {
+export const BusinessSignUp = () => {
   return (
     <div className="h-screen w-screen bg-forest-green flex flex-row justify-center items-center gap-10 sm:flex flex-wrap">
       <div className="w-[556px]">
@@ -20,7 +20,7 @@ const BusinessSignUp = () => {
         </div>
 
         <div className="flex flex-row">
-          <img class="w-[42px]" src={googleLogo} alt="googleLogo" />
+          <img className="w-[42px]" src={googleLogo} alt="googleLogo" />
           <button className="rounded-sm font-inter-medium text-[color:white] w-[380px] h-[44px] bg-deep-blue">
             Sign up with google
           </button>
@@ -81,12 +81,10 @@ const BusinessSignUp = () => {
             ></input>
           </li>
         </ul>
-        <button class=" rounded-sm font-inter-medium text-[color:white] w-[422px] h-[44px] bg-deep-blue ">
+        <button className=" rounded-sm font-inter-medium text-[color:white] w-[422px] h-[44px] bg-deep-blue ">
           Create free account
         </button>
       </div>
     </div>
   );
 };
-
-export default BusinessSignUp;
