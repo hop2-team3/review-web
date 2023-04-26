@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
-import { CategoryComp } from "../components/CategoryComp";
+import { CategoryComp } from "../components/CategoryComp/CategoryComp";
 // import { Link } from "react-router-dom";
-import { ReviewCarouselComp } from "../components/ReviewCarouselComp";
+import { ReviewCarouselComp } from "../components/ReviewCarouselComp/ReviewCarouselComp";
 
 export const Home = () => {
   return (
@@ -27,7 +27,7 @@ export const Home = () => {
 
         <div className=" flex items-center justify-center place-content-around  w-screen h-[410px] bg-[#F1F1E8]">
           <div className=" h-[343px] w-[1200px]">
-            <div className="h-[40px] w-[1200px] flex justify-between text-center flex flex-row">
+            <div className="h-[40px] w-[1200px] flex justify-between text-center flex-row">
               <p className=" w-[320px] h-[32px] flex text-[24px]">
                 Explore categories{" "}
               </p>

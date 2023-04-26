@@ -21,7 +21,7 @@ export const BusinessSignUp = () => {
 
         <div className="flex flex-row">
           <a href="google.com">
-            <img class="w-[42px]" src={googleLogo} alt="googleLogo" />
+            <img className="w-[42px]" src={googleLogo} alt="googleLogo" />
           </a>
           <button className="rounded-sm font-inter-medium text-[color:white] w-[220px] h-[44px] bg-deep-blue sm:w-[380px]">
             Sign up with google
@@ -83,7 +83,7 @@ export const BusinessSignUp = () => {
             ></input>
           </li>
         </ul>
-        <button class=" rounded-sm font-inter-medium text-[color:white]  w-[262px] sm:w-[422px] h-[44px] bg-deep-blue ">
+        <button className=" rounded-sm font-inter-medium text-[color:white]  w-[262px] sm:w-[422px] h-[44px] bg-deep-blue ">
           Create free account
         </button>
       </div>

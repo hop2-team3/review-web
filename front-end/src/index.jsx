@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { App } from "./pages/App";
-import { Header } from "./components/header";
 import "./assets/style.css";
 import reportWebVitals from "./reportWebVitals";
 import CustomerSignup from "./pages/CustomerSignup";

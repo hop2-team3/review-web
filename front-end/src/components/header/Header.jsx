@@ -37,7 +37,7 @@ export function Header() {
                 Categories
               </Link>
               <hr />
-              <Link to="/Login" className="text-sm font-normal">
+              <Link to="/CustomerSignUp" className="text-sm font-normal">
                 Log in
               </Link>
               <hr />
@@ -57,7 +57,10 @@ export function Header() {
           >
             Categories
           </Link>
-          <Link to="/signup" className="text-sm text-[#FCFBF3] font-normal">
+          <Link
+            to="/CustomerSignUp"
+            className="text-sm text-[#FCFBF3] font-normal"
+          >
             Log in
           </Link>
           <Link

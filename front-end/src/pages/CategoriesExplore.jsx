@@ -1,5 +1,5 @@
 import React from "react";
-import { ExploreCategoriesComp } from "../components/ExploreCategoriesComp";
+import { ExploreCategoriesComp } from "../components/ExploreCategoriesComp/ExploreCategoriesComp";
 
 export const CategoriesExplore = () => {
   return (

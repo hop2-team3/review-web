@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
-import dugood from "../assets/dugood.png";
-import fivestar from "../assets/fivestar.svg";
-import world from "../assets/world.svg";
-import mail from "../assets/mail.svg";
-import phone from "../assets/phone.svg";
+import dugood from "../../assets/dugood.png";
+import fivestar from "../../assets/fivestar.svg";
+import world from "../../assets/world.svg";
+import mail from "../../assets/mail.svg";
+import phone from "../../assets/phone.svg";
 
 export const ExploreCategoriesComp = () => {
   return (
