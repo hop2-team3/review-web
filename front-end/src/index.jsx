@@ -4,6 +4,7 @@ import { App } from "./pages/App";
 import { Header } from "./components/header";
 import "./assets/style.css";
 import reportWebVitals from "./reportWebVitals";
+import CustomerSignup from "./pages/CustomerSignup";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
