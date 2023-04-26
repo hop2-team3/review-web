@@ -2,20 +2,21 @@ import React from "react";
 import { ReviewCarouselComp } from "../components/ReviewCarouselComp";
 import { ReviewComp } from "../components/ReviewComp";
 import { CategoryComp } from "../components/CategoryComp";
+import { CompanyReviewedComp } from "../components/CompanyReviewedComp";
 
 export const SignUp = () => {
   return (
     //arilgaj boln
-    <div className="w-screen h-screen bg-[#F1F1E8] bg-[green] flex  items-center gap-[20px]">
-      <ReviewCarouselComp
+    <div className="w-screen h-screen bg-[#F1F1E8] flex  items-center gap-[20px]">
+      {/* <ReviewCarouselComp
         name={"tugu"}
         company={"villiard"}
         review={
           "Yanziin fg dyuiagfkjda hfiduas f lasdjf fdukash f ghduklah fkd gfhiwughkjfuikbuigjhbkgfduiuihgtruiuhiglfuhilguif"
         }
         rate={2}
-      />
-      <ReviewComp
+      /> */}
+      {/* <ReviewComp
         name={"tugu"}
         title={"ver nice dude"}
         company={"villiard"}
@@ -24,8 +25,14 @@ export const SignUp = () => {
         }
         rate={2}
         date={"March 29, 2023"}
+      /> */}
+      {/* <CategoryComp categoryName={"bank"} /> */}
+      <CompanyReviewedComp
+        companyName={"Merrick bank"}
+        rating={3}
+        reviews={123}
+        link={"merrick bank.com"}
       />
-      <CategoryComp categoryName={"bank"} />
     </div>
     //arilgaj boln
   );
