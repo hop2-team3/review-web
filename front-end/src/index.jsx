@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { App } from "./pages/App";
 import "./assets/style.css";
 import reportWebVitals from "./reportWebVitals";
+import CustomerSignup from "./pages/CustomerSignup";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

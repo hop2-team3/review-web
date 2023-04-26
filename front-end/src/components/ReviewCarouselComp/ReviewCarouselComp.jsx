@@ -1,5 +1,5 @@
 import React from "react";
-import { RatingStarsComp } from "./RatingStarsComp";
+import { RatingStarsComp } from "../RatingStarsComp/RatingStarsComp";
 
 export const ReviewCarouselComp = (props) => {
   const colors = ["blue", "green", "yellow", "cyan"];
