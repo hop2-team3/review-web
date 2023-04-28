@@ -1,38 +1,23 @@
 import React from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "./Home";
-import { SignUp } from "./SignUp";
-// import { Categories } from "./Categories";
-import { Login } from "./Login";
-import { Forbusinesses } from "./Forbusinesses";
+import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
 import { CategoriesExplore } from "./CategoriesExplore";
+import { BusinessSignUp } from "./BusinessSignUp";
+import { CustomerSignUp } from "./CustomerSignup";
 
 export const App = () => {
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Home />,
-    },
-    {
-      path: "/signup",
-      element: <SignUp />,
-    },
-    // {
-    //   path: "/categories",
-    //   element: <Categories />,
-    // },
-    {
-      path: "/forbusinesses",
-      element: <Forbusinesses />,
-    },
-    {
-      path: "/login",
-      element: <Login />,
-    },
-    {
-      path: "/CategoriesExplore",
-      element: <CategoriesExplore />,
-    },
-  ]);
-  return <RouterProvider router={router} />;
+  return (
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/categoriesExplore" element={<CategoriesExplore />} />
+        <Route path="/BusinessSignUp" element={<BusinessSignUp />} />
+        <Route path="/CustomerSignUp" element={<CustomerSignUp />} />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
+  );
 };

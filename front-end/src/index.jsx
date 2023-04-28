@@ -8,7 +8,7 @@ import CustomerSignup from "./pages/CustomerSignup";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <CustomerSignup />
+    <App />
   </React.StrictMode>
 );
 
