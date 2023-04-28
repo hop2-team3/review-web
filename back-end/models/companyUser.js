@@ -1,6 +1,6 @@
 const { model, Schema } = require("mongoose");
 
-const CompantScheme = new Schema({
+const CompanyScheme = new Schema({
   companyName: String,
   phoneNumber: Number,
   link: String,
@@ -17,6 +17,6 @@ const CompantScheme = new Schema({
   date: { type: Date, default: Date.now },
 });
 
-const CompanyModel = model("Company", CompanyScheme);
+const CompanyModel = model("Companies", CompanyScheme);
 
 module.exports = CompanyModel;
