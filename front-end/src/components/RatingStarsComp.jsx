@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import DefaultStar from "../../assets/DefaultStar.jpg";
-import Star from "../../assets/Star.png";
+import DefaultStar from "../assets/DefaultStar.jpg";
+import Star from "../assets/Star.png";
 
 export const RatingStarsComp = (props) => {
   const [rate, setRate] = useState(0);

@@ -1,5 +1,5 @@
 import React from "react";
-import { RatingStarsComp } from "../RatingStarsComp";
+import { RatingStarsComp } from "./RatingStarsComp";
 import browse from "../assets/browseLink.png";
 import dial from "../assets/dial.png";
 import comp1 from "../assets/company1.png";
