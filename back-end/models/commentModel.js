@@ -1,16 +1,20 @@
 const { model, Schema } = require("mongoose");
 
-const LinkScheme = new Schema({
+const ReviewScheme = new Schema({
+  email: String,
   firstname: String,
   lastname: String,
+  progilePic: String,
+  title: String,
   comment: String,
-  rate: String,
+  rate: Number,
   reviews: Number,
+  dateOfExperience: String,
   date: { type: Date, default: Date.now },
-  owner: { type: Schema.ObjectId, ref: "User" },
-  owner: { type: Schema.ObjectId, ref: "Company" },
+  owner: { type: Schema.ObjectId, ref: "Users" },
+  owner: { type: Schema.ObjectId, ref: "Companies" },
 });
 
-const LinkModel = model("Link", LinkScheme);
+const ReviewModel = model("Reviews", ReviewScheme);
 
-module.exports = LinkModel;
+module.exports = ReviewModel;
