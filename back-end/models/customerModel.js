@@ -5,11 +5,6 @@ const CustomerScheme = new Schema({
   lastname: String,
   email: String,
   password: String,
-  //   role: {
-  //     type: String,
-  //     default: "user",
-  //     enum: ["user", "admin", "superadmin"],
-  //   },
   date: { type: Date, default: Date.now },
 });
 

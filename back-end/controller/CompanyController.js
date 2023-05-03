@@ -1,11 +1,11 @@
-const CustomerModel = require("../models/customerModel");
+const CompanyModel = require("../models/companyModel");
 const jwt = require("jsonwebtoken");
 const SECRET_KEY = "default_secret";
 const bcrypt = require("bcrypt");
 
 exports.getUsers = async (req, res) => {
   try {
-    const users = await CustomerModel.find();
+    const users = await CompanyModel.find();
     return res.status(200).json({
       message: true,
       data: users,
@@ -17,15 +17,14 @@ exports.getUsers = async (req, res) => {
 
 exports.signup = async (req, res, next) => {
   try {
-    const { firstname, lastname, password, email } = req.body;
-    const existingUser = await CustomerModel.findOne({ email: email });
+    const { companyName, password, email } = req.body;
+    const existingUser = await CompanyModel.findOne({ email: email });
     if (existingUser) {
       return res.status(409).json({ message: "burtgeltei hereglegch bna." });
     }
     const hashedPassword = await bcrypt.hash(password, 10);
-    const result = await CustomerModel.create({
-      firstname: firstname,
-      lastname: lastname,
+    const result = await CompanyModel.create({
+      companyName: companyName,
       email: email,
       password: hashedPassword,
     });
@@ -40,7 +39,7 @@ exports.signup = async (req, res, next) => {
 exports.login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-    const existingUser = await CustomerModel.findOne({ email: email });
+    const existingUser = await CompanyModel.findOne({ email: email });
     if (!existingUser) {
       return res.status(401).json({ message: "email buruu bna" });
     }
@@ -63,7 +62,7 @@ exports.login = async (req, res, next) => {
 exports.updateUser = async (req, res, next) => {
   try {
     const { email } = req.body;
-    const existingUser = await CustomerModel.findOneAndUpdate(
+    const existingUser = await CompanyModel.findOneAndUpdate(
       { email: email },
       { ...req.body }
     );
@@ -80,7 +79,7 @@ exports.updateUser = async (req, res, next) => {
 
 exports.deleteUsers = async (req, res, next) => {
   try {
-    const users = await CustomerModel.deleteMany({});
+    const users = await CompanyModel.deleteMany({});
     res.status(200).json({
       message: "all users deleted",
       data: "deleted",
@@ -89,22 +88,3 @@ exports.deleteUsers = async (req, res, next) => {
     return res.status(400).json({ message: error, data: null });
   }
 };
-
-// exports.edit = async (req, res, next) => {
-//   try {
-//     const { email } = req.body;
-//     const existingUser = await CustomerModel.findOneAndUpdate(
-//       { email: email },
-//       { ...req.body },
-//       next()
-//     );
-//     if (!existingUser) {
-//       return res.status(401).json({ message: "email buruu bna" });
-//     }
-//     console.log(req.body);
-//     res.status(201).json({ user: existingUser });
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).json({ message: "ymar neg zuil buruu bna." });
-//   }
-// };

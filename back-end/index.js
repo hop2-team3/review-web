@@ -2,26 +2,28 @@ const connect = require("./helper/db");
 connect();
 
 const express = require("express");
-// const dotenv = require("dotenv");
-// dotenv.config();
+const dotenv = require("dotenv");
+dotenv.config();
 
 const cors = require("cors");
-const port = 8000;
+const port = process.env.BACK_END_PORT;
 const app = express();
-const customerRoutes = require("./routes/customerRoutes");
-const companyRoutes = require("./routes/companyRoutes");
+const CustomerRoutes = require("./routes/CustomerRoutes");
+const CompanyRoutes = require("./routes/CompanyRoutes");
+const CommentRoutes = require("./routes/CommentRoutes");
 
 app.use(cors());
 app.use(express.json());
-app.use("/customers", customerRoutes);
-app.use("/companies", companyRoutes);
+app.use("/customers", CustomerRoutes);
+app.use("/companies", CompanyRoutes);
+app.use("/comments", CommentRoutes);
 
 app.get("/", (req, res) => {
   res.send("hello");
 });
 
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: process.env.FRONT_END,
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 };

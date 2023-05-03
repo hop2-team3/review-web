@@ -1,11 +1,15 @@
 const { model, Schema } = require("mongoose");
 
 const ReviewScheme = new Schema({
+  email: String,
   firstname: String,
   lastname: String,
+  progilePic: String,
+  title: String,
   comment: String,
-  rate: String,
+  rate: Number,
   reviews: Number,
+  dateOfExperience: String,
   date: { type: Date, default: Date.now },
   owner: { type: Schema.ObjectId, ref: "Users" },
   owner: { type: Schema.ObjectId, ref: "Companies" },
