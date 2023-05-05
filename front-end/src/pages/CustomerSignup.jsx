@@ -1,7 +1,44 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import googleLogo from "../assets/googleLogo.png";
+import axios from "axios";
 
 export const CustomerSignUp = () => {
+  const URL = "http://localhost:8000/customers/signup";
+  const firstname = useRef("");
+  const lastname = useRef("");
+  const email = useRef("");
+  const password = useRef("");
+  const passwordr = useRef("");
+  const click = () => {
+    if (
+      firstname.current.value !== "" &&
+      lastname.current.value !== "" &&
+      email.current.value !== "" &&
+      password.current.value !== "" &&
+      passwordr.current.value !== ""
+    ) {
+      if (password.current.value === passwordr.current.value) {
+        axios
+          .post(URL, {
+            firstname: firstname.current.value,
+            lastname: lastname.current.value,
+            email: email.current.value,
+            password: password.current.value,
+          })
+          .then(function (res) {
+            console.log(res);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      } else {
+        console.log("password buruu bna");
+      }
+    } else {
+      console.log("dutuu bna");
+    }
+  };
+
   return (
     <div className="h-full w-screen bg-forest-green flex flex-row justify-center items-center gap-10 sm:flex flex-wrap sm:h-screen">
       <div className="w-[556px] flex flex-col justify-center items-center">
@@ -44,34 +81,44 @@ export const CustomerSignUp = () => {
               <input
                 className="border border-border-gray rounded-sm h-[44px] w-[262px] sm:w-[422px] pl-2"
                 placeholder="First name"
+                ref={firstname}
               ></input>
             </li>
             <li>
               <input
                 className="border border-border-gray rounded-sm h-[44px]  w-[262px] sm:w-[422px] pl-2"
                 placeholder="Last name"
+                ref={lastname}
               ></input>
             </li>
             <li>
               <input
                 className="border border-border-gray rounded-sm h-[44px]  w-[262px] sm:w-[422px] pl-2"
                 placeholder="Email"
+                ref={email}
               ></input>
             </li>
             <li>
               <input
                 className="border border-border-gray rounded-sm h-[44px]  w-[262px] sm:w-[422px] pl-2"
                 placeholder="Password"
+                type="Password"
+                ref={password}
               ></input>
             </li>
             <li>
               <input
                 className="border border-border-gray rounded-sm h-[44px]  w-[262px] sm:w-[422px] pl-2"
                 placeholder="Repeat password"
+                ref={passwordr}
+                type="Password"
               ></input>
             </li>
           </ul>
-          <button className=" rounded-sm font-inter-medium text-[color:white] mt-5 md:mt-0   w-[262px] sm:w-[422px] h-[44px] bg-deep-blue ">
+          <button
+            className=" rounded-sm font-inter-medium text-[color:white] mt-5 md:mt-0   w-[262px] sm:w-[422px] h-[44px] bg-deep-blue "
+            onClick={click}
+          >
             Create free account
           </button>
         </div>
