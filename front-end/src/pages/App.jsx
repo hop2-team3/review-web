@@ -5,7 +5,7 @@ import { SignUp } from "./SignUp";
 import { Categories } from "./Categories";
 import { Login } from "./Login";
 import { Forbusinesses } from "./Forbusinesses";
-
+import ReviewPage, { Review} from "./ReviewPage";
 export const App = () => {
   const router = createBrowserRouter([
     {
@@ -27,6 +27,10 @@ export const App = () => {
     {
       path: "/login",
       element: <Login />,
+    },
+    {
+      path: "/review",
+      element: <ReviewPage />,
     },
   ]);
   return <RouterProvider router={router} />;

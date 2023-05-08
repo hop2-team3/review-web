@@ -6,9 +6,9 @@ export const RatingStarsComp = (props) => {
   const [rate, setRate] = useState(0);
   const [mouseClick, setMouseClick] = useState(-1);
   const defaultRate = [0, 0, 0, 0, 0];
-  const givenRate = defaultRate.fill(1, 0, props.rate);
+  const givenRate = defaultRate.fill(1, 0, rate);
   let color;
-  switch (props.rate) {
+  switch (rate) {
     case 1:
       color = "#FF3722";
       break;
@@ -25,9 +25,10 @@ export const RatingStarsComp = (props) => {
       color = "#00b67a";
       break;
   }
+  console.log(props.scale);
   return (
-    <div>
-      <div className="w-[108px] h-[20px] flex gap-[2px]">
+    <div className={` scale-[${props.scale}]`}>
+      <div className={`w-[108px] h-[20px] flex gap-[2px]`}>
         {defaultRate.map((el, index) => {
           return (
             <img

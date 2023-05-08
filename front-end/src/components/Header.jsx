@@ -27,7 +27,7 @@ export function Header() {
             style={styles.drop}
           ></button>
           {toggleDrop ? (
-            <div className="absolute w-[180px] h-[150px]  ml-[-140px] mt-[20px] flex flex-col justify-between">
+            <div className="absolute w-[180px] h-[150px]  ml-[-140px] mt-[25px] bg-white flex flex-col z-10 justify-between">
           <Link to="/categories" className="text-sm  font-normal pt-[15px]">
             Categories
           </Link>
