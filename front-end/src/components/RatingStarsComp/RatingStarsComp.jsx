@@ -33,9 +33,10 @@ export const RatingStarsComp = (props) => {
       color = "#00b67a";
       break;
   }
+  console.log(props.scale);
   return (
-    <div>
-      <div className="w-[108px] h-[20px] flex gap-[2px]">
+    <div className={` scale-[${props.scale}]`}>
+      <div className={`w-[108px] h-[20px] flex gap-[2px]`}>
         {defaultRate.map((el, index) => {
           return (
             <img
