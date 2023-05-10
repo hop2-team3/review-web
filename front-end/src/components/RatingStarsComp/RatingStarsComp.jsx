@@ -6,9 +6,17 @@ export const RatingStarsComp = (props) => {
   const [rate, setRate] = useState(0);
   const [mouseClick, setMouseClick] = useState(-1);
   const defaultRate = [0, 0, 0, 0, 0];
-  const givenRate = defaultRate.fill(1, 0, props.rate);
+  let givenRate;
+  let colorCode;
+  if (props.fixed) {
+    givenRate = defaultRate.fill(1, 0, rate);
+    colorCode = rate;
+  } else {
+    givenRate = defaultRate.fill(1, 0, props.rate);
+    colorCode = props.rate;
+  }
   let color;
-  switch (props.rate) {
+  switch (colorCode) {
     case 1:
       color = "#FF3722";
       break;
@@ -34,9 +42,12 @@ export const RatingStarsComp = (props) => {
               className="w-[20px] h-[20px]"
               src={DefaultStar}
               key={index}
-              onClick={() => {
+              onClick={(event) => {
                 setMouseClick(index);
                 setRate(index + 1);
+                if (props.fixed === false) {
+                  props.handleClick(index + 1);
+                }
               }}
               onMouseOver={() => {
                 if (mouseClick == -1) {
@@ -63,6 +74,9 @@ export const RatingStarsComp = (props) => {
                 onClick={() => {
                   setMouseClick(index);
                   setRate(index + 1);
+                  if (props.fixed === false) {
+                    props.handleClick(index + 1);
+                  }
                 }}
                 onMouseOver={() => {
                   if (mouseClick == -1) {
