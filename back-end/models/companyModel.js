@@ -2,7 +2,7 @@ const { model, Schema } = require("mongoose");
 
 const CompanyScheme = new Schema({
   companyName: String,
-  phoneNumber: Number,
+  phoneNumber: String,
   link: String,
   companyLogo: String,
   email: String,

@@ -1,7 +1,51 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import googleLogo from "../assets/googleLogo.png";
+import axios from "axios";
+import Select from "react-select";
 
 export const BusinessSignUp = () => {
+  const URL = "http://localhost:8000/companies/signup";
+  const link = useRef("");
+  const companyName = useRef("");
+  const email = useRef("");
+  const phoneNumber = useRef(0);
+  const password = useRef("");
+  const passwordr = useRef("");
+  const click = () => {
+    if (
+      link.current.value !== "" &&
+      companyName.current.value !== "" &&
+      email.current.value !== "" &&
+      phoneNumber.current.value !== "" &&
+      password.current.value !== "" &&
+      passwordr.current.value !== ""
+    ) {
+      if (password.current.value === passwordr.current.value) {
+        axios
+          .post(URL, {
+            link: link.current.value,
+            companyName: companyName.current.value,
+            phoneNumber: phoneNumber.current.value,
+            email: email.current.value,
+            password: password.current.value,
+          })
+          .then(function (res) {
+            console.log(res);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      } else {
+        console.log("password buruu bna");
+      }
+    } else {
+      console.log("dutuu bna");
+    }
+  };
+
+  const deleteToken = () => {
+    localStorage.removeItem("token");
+  };
   return (
     <div className="h-full w-screen bg-forest-green flex flex-row justify-center items-center gap-10 sm:flex flex-wrap sm:h-screen">
       <div className="w-[556px] flex flex-col justify-center items-center">
@@ -37,42 +81,32 @@ export const BusinessSignUp = () => {
             Sign up with email
           </div>
         </div>
-
         <ul className="space-y-5 flex flex-col justify-center items-center">
           <li>
             <input
               className="border border-border-gray rounded-sm h-[44px] w-[262px] sm:w-[422px] pl-2"
-              placeholder="Website"
+              placeholder="Website link"
+              ref={link}
             ></input>
           </li>
           <li>
             <input
               className="border border-border-gray rounded-sm h-[44px]  w-[262px] sm:w-[422px] pl-2"
               placeholder="Company name"
+              ref={companyName}
             ></input>
           </li>
           <li>
             <input
               className="border border-border-gray rounded-sm h-[44px]  w-[262px] sm:w-[422px] pl-2"
-              placeholder="First name"
-            ></input>
-          </li>
-          <li>
-            <input
-              className="border border-border-gray rounded-sm h-[44px]  w-[262px] sm:w-[422px] pl-2"
-              placeholder="Last name"
-            ></input>
-          </li>
-          <li>
-            <input
-              className="border border-border-gray rounded-sm h-[44px]  w-[262px] sm:w-[422px] pl-2"
-              placeholder="Job title"
+              placeholder="Category"
             ></input>
           </li>
           <li>
             <input
               className="border border-border-gray rounded-sm h-[44px]  w-[262px] sm:w-[422px] pl-2"
               placeholder="Work email"
+              ref={email}
             ></input>
           </li>
           <li>
@@ -80,12 +114,34 @@ export const BusinessSignUp = () => {
               className="border border-border-gray rounded-sm h-[44px]  w-[262px] sm:w-[422px] pl-2"
               placeholder="Phone number"
               type="tel"
+              ref={phoneNumber}
+            ></input>
+          </li>
+          <li>
+            <input
+              className="border border-border-gray rounded-sm h-[44px]  w-[262px] sm:w-[422px] pl-2"
+              placeholder="Password"
+              type="Password"
+              ref={password}
+            ></input>
+          </li>
+          <li>
+            <input
+              className="border border-border-gray rounded-sm h-[44px]  w-[262px] sm:w-[422px] pl-2"
+              placeholder="Repeat password"
+              type="Password"
+              ref={passwordr}
             ></input>
           </li>
         </ul>
-        <button className=" rounded-sm font-inter-medium text-[color:white]  w-[262px] sm:w-[422px] h-[44px] bg-deep-blue ">
+        <button
+          className=" rounded-sm font-inter-medium text-[color:white]  w-[262px] sm:w-[422px] h-[44px] bg-deep-blue "
+          onClick={click}
+        >
           Create free account
         </button>
+
+        <button onClick={deleteToken}>DELETE</button>
       </div>
     </div>
   );

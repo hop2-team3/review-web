@@ -17,7 +17,7 @@ exports.getUsers = async (req, res) => {
 
 exports.signup = async (req, res, next) => {
   try {
-    const { companyName, password, email } = req.body;
+    const { companyName, password, email, link, phoneNumber } = req.body;
     const existingUser = await CompanyModel.findOne({ email: email });
     if (existingUser) {
       return res.status(409).json({ message: "burtgeltei hereglegch bna." });
@@ -25,8 +25,11 @@ exports.signup = async (req, res, next) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     const result = await CompanyModel.create({
       companyName: companyName,
+      phoneNumber: phoneNumber,
       email: email,
       password: hashedPassword,
+      link: link,
+      // category: category,
     });
     const token = jwt.sign({ email: result.email, id: result._id }, SECRET_KEY);
     res.status(201).json({ user: result, token: token });
@@ -88,3 +91,4 @@ exports.deleteUsers = async (req, res, next) => {
     return res.status(400).json({ message: error, data: null });
   }
 };
+console.log(typeof 1);

@@ -1,8 +1,9 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React from "react";
+import React, { useState } from "react";
 import { CategoryComp } from "../components/CategoryComp/CategoryComp";
 // import { Link } from "react-router-dom";
 import { ReviewCarouselComp } from "../components/ReviewCarouselComp/ReviewCarouselComp";
+import { RatingStarsComp } from "../components/RatingStarsComp";
 
 export const Home = () => {
   return (
