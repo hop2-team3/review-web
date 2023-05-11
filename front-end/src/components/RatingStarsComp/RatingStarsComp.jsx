@@ -8,12 +8,12 @@ export const RatingStarsComp = (props) => {
   const defaultRate = [0, 0, 0, 0, 0];
   let givenRate;
   let colorCode;
-  if (props.fixed) {
-    givenRate = defaultRate.fill(1, 0, rate);
-    colorCode = rate;
-  } else {
+  if (props.rate) {
     givenRate = defaultRate.fill(1, 0, props.rate);
     colorCode = props.rate;
+  } else {
+    givenRate = defaultRate.fill(1, 0, rate);
+    colorCode = rate;
   }
   let color;
   switch (colorCode) {
@@ -34,7 +34,11 @@ export const RatingStarsComp = (props) => {
       break;
   }
   return (
-    <div className={` scale-[${props.scale}]`}>
+    <div
+      className={` ${
+        props.scale ? `my-[10px] ml-[153px] scale-[${props.scale}]` : ""
+      }`}
+    >
       <div className={`w-[108px] h-[20px] flex gap-[2px]`}>
         {defaultRate.map((el, index) => {
           return (
@@ -45,7 +49,7 @@ export const RatingStarsComp = (props) => {
               onClick={(event) => {
                 setMouseClick(index);
                 setRate(index + 1);
-                if (props.fixed === false) {
+                if (!props.rate) {
                   props.handleClick(index + 1);
                 }
               }}
@@ -74,7 +78,7 @@ export const RatingStarsComp = (props) => {
                 onClick={() => {
                   setMouseClick(index);
                   setRate(index + 1);
-                  if (props.fixed === false) {
+                  if (!props.rate) {
                     props.handleClick(index + 1);
                   }
                 }}
