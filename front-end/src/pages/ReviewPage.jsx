@@ -74,9 +74,14 @@ export const ReviewPage = () => {
             <div className="h-[90px] px-[20px] bg-[white] border-[#E5E5DD] border-[1px] flex items-center border-solid rounded-md justify-between  w-[90%] sm:w-[680px]">
               <div className="flex items-center gap-[10px]">
                 <img className="h-[40px] w-[40px]" src={pro} />
-                <Link className="text-[#146C94] cursor-pointer hover:underline" to="/evaluate">Write a review</Link>
+                <Link
+                  className="text-[#146C94] cursor-pointer hover:underline"
+                  to="/evaluate"
+                >
+                  Write a review
+                </Link>
               </div>
-                <RatingStarsComp scale={2} />
+              <RatingStarsComp scale={2} rate={-1} />
             </div>
             <div className="h-[255px] bg-[white] border-[#E5E5DD] border-[1px] flex flex-col border-solid justify-evenly rounded-md  w-[90%] sm:w-[680px]">
               <div className="flex flex-row h-[28px] w-[189px] items-center justify-evenly ">

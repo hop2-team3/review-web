@@ -53,7 +53,7 @@ export const Evaluate = () => {
         <div className=" h-[auto] sm:min-h-[600px] p-[24px] flex flex-col justify-start sm:justify-around gap-[5px] bg-[#F6F1F1] w-[90%] sm:w-[510px] sm:border-[1px] sm:border-[#E5e5dd] sm:bg-[white] rounded-[10px]">
           <div>
             <p>Rate your recent experience</p>
-            <RatingStarsComp scale={2} handleClick={handleClick} />
+            <RatingStarsComp scale="2" handleClick={handleClick} />
           </div>
           <div>
             <p>Tell us more about your experience</p>
