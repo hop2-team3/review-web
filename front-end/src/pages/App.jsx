@@ -7,6 +7,8 @@ import { CategoriesExplore } from "./CategoriesExplore";
 import { BusinessSignUp } from "./BusinessSignUp";
 import { CustomerSignUp } from "./CustomerSignup";
 import { Evaluate } from "./Evaluate";
+import {ReviewPage} from "./ReviewPage"
+import {CustomerLogin} from "./CustomerLogin";
 
 export const App = () => {
   return (
@@ -18,6 +20,9 @@ export const App = () => {
         <Route path="/BusinessSignUp" element={<BusinessSignUp />} />
         <Route path="/CustomerSignUp" element={<CustomerSignUp />} />
         <Route path="/Evaluate" element={<Evaluate />} />
+        <Route path="/Reviews" element={<ReviewPage />} />
+        <Route path="/CustomerLogin" element={<CustomerLogin />} />
+
       </Routes>
       <Footer />
     </BrowserRouter>

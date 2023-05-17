@@ -2,7 +2,7 @@ import { useState } from "react";
 import React from "react";
 import googleBtn from "../assets/googleBtn.png";
 
-const CustomerLogin = () => {
+export const CustomerLogin = () => {
   const [email, setEmail] = useState("");
   const [passwordType, setPasswordType] = useState("password");
   const [passwordInput, setPasswordInput] = useState("");
@@ -94,5 +94,3 @@ const CustomerLogin = () => {
     </div>
   );
 };
-
-export default CustomerLogin;
