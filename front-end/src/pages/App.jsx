@@ -6,6 +6,7 @@ import { Footer } from "../components/footer";
 import { CategoriesExplore } from "./CategoriesExplore";
 import { BusinessSignUp } from "./BusinessSignUp";
 import { CustomerSignUp } from "./CustomerSignup";
+import { Evaluate } from "./Evaluate";
 
 export const App = () => {
   return (
@@ -16,6 +17,7 @@ export const App = () => {
         <Route path="/categoriesExplore" element={<CategoriesExplore />} />
         <Route path="/BusinessSignUp" element={<BusinessSignUp />} />
         <Route path="/CustomerSignUp" element={<CustomerSignUp />} />
+        <Route path="/Evaluate" element={<Evaluate />} />
       </Routes>
       <Footer />
     </BrowserRouter>

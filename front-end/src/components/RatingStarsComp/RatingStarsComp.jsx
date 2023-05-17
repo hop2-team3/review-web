@@ -3,17 +3,17 @@ import DefaultStar from "../../assets/DefaultStar.jpg";
 import Star from "../../assets/Star.png";
 
 export const RatingStarsComp = (props) => {
-  const [rate, setRate] = useState(0);
+  const [rate, setRate] = useState(1);
   const [mouseClick, setMouseClick] = useState(-1);
   const defaultRate = [0, 0, 0, 0, 0];
   let givenRate;
   let colorCode;
-  if (props.fixed) {
-    givenRate = defaultRate.fill(1, 0, rate);
-    colorCode = rate;
-  } else {
+  if (props.rate) {
     givenRate = defaultRate.fill(1, 0, props.rate);
     colorCode = props.rate;
+  } else {
+    givenRate = defaultRate.fill(1, 0, rate);
+    colorCode = rate;
   }
   let color;
   switch (colorCode) {
@@ -34,8 +34,12 @@ export const RatingStarsComp = (props) => {
       break;
   }
   return (
-    <div className={` scale-[${props.scale}]`}>
-      <div className={`w-[108px] h-[20px] flex gap-[2px]`}>
+    <div
+      className={`w-[108px] h-auto ${
+        props.scale ? `scale-[${props.scale}] ml-[55px] my-[15px]` : ""
+      } `}
+    >
+      <div className={`w-[108px] h-[20px] flex flex-row gap-[2px]`}>
         {defaultRate.map((el, index) => {
           return (
             <img
@@ -45,7 +49,7 @@ export const RatingStarsComp = (props) => {
               onClick={(event) => {
                 setMouseClick(index);
                 setRate(index + 1);
-                if (props.fixed === false) {
+                if (!props.rate) {
                   props.handleClick(index + 1);
                 }
               }}
@@ -63,7 +67,7 @@ export const RatingStarsComp = (props) => {
           );
         })}
       </div>
-      <div className="w-[108px] h-[20px] flex gap-[2px] mt-[-20px]">
+      <div className="w-[108px] h-[20px] flex flex-row gap-[2px] mt-[-20px]">
         {givenRate.map((el, index) => {
           if (el % 2 == 1) {
             return (
@@ -74,7 +78,7 @@ export const RatingStarsComp = (props) => {
                 onClick={() => {
                   setMouseClick(index);
                   setRate(index + 1);
-                  if (props.fixed === false) {
+                  if (!props.rate) {
                     props.handleClick(index + 1);
                   }
                 }}
