@@ -1,25 +1,31 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
-import dugood from "../../assets/dugood.png";
-import fivestar from "../../assets/fivestar.svg";
-import world from "../../assets/world.svg";
-import mail from "../../assets/mail.svg";
-import phone from "../../assets/phone.svg";
+import { useState } from "react";
+import fivestar from "../assets/fivestar.svg";
+import world from "../assets/world.svg";
+import mail from "../assets/mail.svg";
+import phone from "../assets/phone.svg";
+import { ContactInfoComp } from "./ContactInfoComp";
+// import dugood from "../assets/dugood.png";
+// import { RatingStarsComp } from "./RatingStarsComp";
 
-export const ExploreCategoriesComp = () => {
+export const ExploreCategoriesComp = (props) => {
+  const [isshown] = useState(false);
+  const handleClick = (event) => {};
+
   return (
     <>
-      <button className="h-[169px] w-[830px] rounded-[8px] bg-[#FFFFFF]">
-        <div className=" flex flex-row h-[98px] pl-4 ">
-          <img className="h-[72px] w-[72px]" src={dugood}></img>
-          <div className="flex flex-col h-[87px] pl-6 place-content-evenly ">
-            <p className="h-[20px] w-[151px] font-[800] text-[15px]">
-              DuGood Credit Union
+      <button className="h-[168px] w-[830px] rounded-[8px] bg-[#FFFFFF] mt-[25px] ">
+        <div className=" flex flex-row h-[110px] pl-6 border-b border-[#696A6A] items-center ">
+          <img className="h-[74px] w-[74px]" src={props.bg}></img>
+          <div className="flex flex-col h-[77px] pl-6 place-content-evenly ">
+            <p className="h-[20px] w-[123px] font-[700] text-[16px]">
+              {props.CompanyName}
             </p>
-            <div className="flex flex-row">
+            <div className="flex flex-row h-[20px]">
               <img src={fivestar} className="h-[20px] w-[106px] "></img>
               <p className=" color-[#696A6A] font-[400] text-[13px]">
-                TrustScore 5.0
+                {props.TrustScore}
               </p>
             </div>
 
@@ -29,15 +35,28 @@ export const ExploreCategoriesComp = () => {
           </div>
         </div>
 
-        <div className=" w-[830px] border-b-2"></div>
-        <div className="flex h-[12px] pt-4">
-          <div className="flex flex-row w-[167px] place-content-evenly ">
-            <img className="h-[16px] w-[16px]" src={world}></img>
-            <img className="h-[16px] w-[16px]" src={mail}></img>
-            <img className="h-[16px] w-[16px]" src={phone}></img>
-            <div className="border-l-2 h-[16px]"></div>
+        <div className="flex h-[40px] pt-4">
+          <button className="flex flex-row w-[167px] place-content-evenly cursor-pointer  ">
+            <button
+              onclick={handleClick}
+              className="h-[16px] w-[16px] "
+              style={{ backgroundImage: `url(${world}` }}
+            ></button>
+            <img
+              className="h-[16px] w-[16px]"
+              style={{ backgroundImage: `url(${mail})` }}
+            ></img>
+            <img
+              className="h-[16px] w-[16px]"
+              style={{ backgroundImage: `url(${phone})` }}
+            ></img>
+            <div className="border-l h-[16px]"></div>
             <p className="h-[15px] w-[28px] font-[400] text-[12px]">Bank</p>
-          </div>
+          </button>
+          {/* <button className=" h-[35px] color-[#205CD4] w-[133px] place-self-end">
+            Latest reviews
+          </button> */}
+          {isshown && <ContactInfoComp />}
         </div>
       </button>
     </>
