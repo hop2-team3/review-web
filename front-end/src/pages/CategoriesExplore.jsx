@@ -2,6 +2,7 @@ import React from "react";
 import { ExploreCategoriesComp } from "../components/ExploreCategoriesComp";
 import { ContactInfoComp } from "../components/ContactInfoComp";
 import { CategoryExploreRatingComp } from "../components/CategoryExploreRatingComp";
+import { CompanyReviewedComp } from "../components/CompanyReviewedComp";
 // import { RatingStarsComp } from "../components/RatingStarsComp";
 import dugood from "../assets/dugood.png";
 import southend from "../assets/SouthEnd.png";
@@ -33,6 +34,7 @@ export const CategoriesExplore = (props) => {
               TrustScore={"TrustScore 4.9"}
               bg={southend}
             />
+            <CompanyReviewedComp />
             <ExploreCategoriesComp />
             <ExploreCategoriesComp />
             <ExploreCategoriesComp />

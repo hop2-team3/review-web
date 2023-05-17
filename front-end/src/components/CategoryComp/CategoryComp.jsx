@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export const CategoryComp = (props) => {
-  const logo = require(`../../assets/${props.categoryName}.svg.png`);
+  const logo = require(`../../assets/${props.categoryName}.png`);
   return (
     <Link
       className="w-[290px] h-[80px] rounded-[8px] flex justify-center items-center bg-[#FFFFFF] hover:shadow-[3px_3px_2px_0px_gray] hover:scale-[1.01]"
