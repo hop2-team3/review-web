@@ -6,9 +6,9 @@ export const Footer = () => {
   return (
     <div>
       <div className="bg-cod-gray font-inter">
-        <div className="footer sm:flex flex-wrap text-[color:white] justify-around h-[300px]">
+        <div className="footer sm:flex flex-wrap text-[color:white] justify-around sm:h-[300px] h-full ">
           <div className="footer1">
-            <ul className="space-y-10">
+            <ul className="space-y-5 sm:space-y-10">
               <li>
                 <div className="font-bold font-inter text-[color:gray] ">
                   About
@@ -25,8 +25,8 @@ export const Footer = () => {
               </li>
             </ul>
           </div>
-          <div className="footer2">
-            <ul className="space-y-10">
+          <div className="footer2 mt-10 sm:mt-0 ">
+            <ul className="space-y-5 sm:space-y-10">
               <li>
                 <div className="font-bold font-inter text-[color:gray]">
                   Community
@@ -43,8 +43,8 @@ export const Footer = () => {
               </li>
             </ul>
           </div>
-          <div className="footer3 ">
-            <ul className="space-y-10">
+          <div className="footer3 mt-10 sm:mt-0">
+            <ul className="space-y-5 sm:space-y-10">
               <li>
                 <a className="font-bold font-inter text-[color:gray]">
                   Businesses
@@ -61,8 +61,8 @@ export const Footer = () => {
               </li>
             </ul>
           </div>
-          <div className="footer4">
-            <ul className="space-y-10">
+          <div className="footer4 mt-10 sm:mt-0">
+            <ul className="space-y-5 sm:space-y-10">
               <li>
                 <div className="font-bold font-inter text-[color:gray]">
                   Follow us on
