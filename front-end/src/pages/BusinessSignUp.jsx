@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import googleLogo from "../assets/googleLogo.png";
 import axios from "axios";
-import Select from "react-select";
 
 export const BusinessSignUp = () => {
   const URL = "http://localhost:8000/companies/signup";
