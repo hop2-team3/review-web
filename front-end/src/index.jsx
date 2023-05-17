@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import CustomerLogin from "./pages/CustomerLogin";
 
 import "./assets/style.css";
 import reportWebVitals from "./reportWebVitals";
+import { App } from "./pages/App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
