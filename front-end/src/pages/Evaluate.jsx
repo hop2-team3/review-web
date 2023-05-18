@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
 import { RatingStarsComp } from "../components/RatingStarsComp";
-import Calendar from "react-calendar";
 
 export const Evaluate = () => {
   const [rate, setRate] = useState(1);
