@@ -20,7 +20,7 @@ exports.signup = async (req, res, next) => {
     const { firstname, lastname, password, email } = req.body;
     const existingUser = await CustomerModel.findOne({ email: email });
     if (existingUser) {
-      return res.status(409).json({ message: "burtgeltei hereglegch bna." });
+      return res.status(409).json({ message: "You have already signed up." });
     }
     const hashedPassword = await bcrypt.hash(password, 10);
     const result = await CustomerModel.create({
@@ -33,7 +33,7 @@ exports.signup = async (req, res, next) => {
     res.status(201).json({ user: result, token: token });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: "ymar neg zuil buruu bna" });
+    res.status(500).json({ message: "Something's not going well." });
   }
 };
 
@@ -42,12 +42,12 @@ exports.login = async (req, res, next) => {
     const { email, password } = req.body;
     const existingUser = await CustomerModel.findOne({ email: email });
     if (!existingUser) {
-      return res.status(401).json({ message: "email buruu bna" });
+      return res.status(401).json({ message: "Check your email address." });
     }
     const matchPassword = await bcrypt.compare(password, existingUser.password);
 
     if (!matchPassword) {
-      return res.status(402).json({ message: "nuuts ug buruu bna" });
+      return res.status(402).json({ message: "Check your password." });
     }
     const token = jwt.sign(
       { email: existingUser.email, id: existingUser._id },
@@ -56,7 +56,7 @@ exports.login = async (req, res, next) => {
     res.status(201).json({ user: existingUser, token: token });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: "ymar neg zuil buruu bna." });
+    res.status(500).json({ message: "Something's not going well." });
   }
 };
 
@@ -68,13 +68,13 @@ exports.updateUser = async (req, res, next) => {
       { ...req.body }
     );
     if (!existingUser) {
-      return res.status(401).json({ message: "email buruu bna" });
+      return res.status(401).json({ message: "Check your email address." });
     }
     console.log(req.body);
     res.status(201).json({ data: existingUser });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: "ymar neg zuil buruu bna." });
+    res.status(500).json({ message: "Something's not going well." });
   }
 };
 

@@ -9,6 +9,9 @@ export const CustomerSignUp = () => {
   const email = useRef("");
   const password = useRef("");
   const passwordr = useRef("");
+
+  const [passwordBg, setPasswordBg] = useState("border-gray");
+
   const click = () => {
     if (
       firstname.current.value !== "" &&
@@ -27,15 +30,16 @@ export const CustomerSignUp = () => {
           })
           .then(function (res) {
             console.log(res);
+            // alert("Signed up successfully.");
+            window.location.replace("/CustomerLogin");
           })
           .catch(function (error) {
             console.log(error);
+            alert(error.response.data.message);
           });
       } else {
-        console.log("password buruu bna");
+        setPasswordBg("[red]");
       }
-    } else {
-      console.log("dutuu bna");
     }
   };
 
@@ -100,7 +104,7 @@ export const CustomerSignUp = () => {
             </li>
             <li>
               <input
-                className="border border-border-gray rounded-sm h-[44px]  w-[262px] sm:w-[422px] pl-2"
+                className={`border border-${passwordBg} rounded-sm h-[44px]  w-[262px] sm:w-[422px] pl-2`}
                 placeholder="Password"
                 type="Password"
                 ref={password}
@@ -108,7 +112,7 @@ export const CustomerSignUp = () => {
             </li>
             <li>
               <input
-                className="border border-border-gray rounded-sm h-[44px]  w-[262px] sm:w-[422px] pl-2"
+                className={`border border-${passwordBg} rounded-sm h-[44px]  w-[262px] sm:w-[422px] pl-2`}
                 placeholder="Repeat password"
                 ref={passwordr}
                 type="Password"

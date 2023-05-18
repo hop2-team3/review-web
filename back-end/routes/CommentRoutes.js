@@ -1,4 +1,5 @@
 const express = require("express");
+const auth = require("../middlewaes/auth");
 const router = express.Router();
 const {
   getComments,

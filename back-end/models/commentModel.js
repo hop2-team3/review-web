@@ -1,10 +1,10 @@
 const { model, Schema } = require("mongoose");
 
 const ReviewScheme = new Schema({
-  email: String,
+  // email: String,
   firstname: String,
   lastname: String,
-  progilePic: String,
+  profilePic: String,
   title: String,
   comment: String,
   rate: Number,

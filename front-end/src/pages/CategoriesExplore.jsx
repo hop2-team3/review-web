@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ExploreCategoriesComp } from "../components/ExploreCategoriesComp";
 import { ContactInfoComp } from "../components/ContactInfoComp";
 import { CategoryExploreRatingComp } from "../components/CategoryExploreRatingComp";
@@ -6,8 +6,26 @@ import { CompanyReviewedComp } from "../components/CompanyReviewedComp";
 // import { RatingStarsComp } from "../components/RatingStarsComp";
 import dugood from "../assets/dugood.png";
 import southend from "../assets/SouthEnd.png";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 export const CategoriesExplore = (props) => {
+  const { id } = useParams();
+  const URL = "http://localhost:8000/companies";
+  console.log(id);
+
+  useEffect(() => {
+    axios
+      .post(URL, { category: id })
+      .then(function (res) {
+        console.log(res.data);
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
+    return () => {};
+  }, []);
+
   return (
     <>
       <div className="w-[screen] flex flex-col md-flex">
@@ -20,7 +38,7 @@ export const CategoriesExplore = (props) => {
 
         <div className="w-[screen] h-[auto] bg-[#FCFBF3] flex flex-row items-center justify-center md-flex">
           <div className="flex flex-start">
-            <CategoryExploreRatingComp />{" "}
+            {/* <CategoryExploreRatingComp />{" "}
           </div>
 
           <div className="flex flex-col w-[880px] bg-[#FCFBF3] items-center jusitify-center md-flex">
@@ -39,7 +57,7 @@ export const CategoriesExplore = (props) => {
             <ExploreCategoriesComp />
             <ExploreCategoriesComp />
             <ExploreCategoriesComp />
-            <ExploreCategoriesComp />
+            <ExploreCategoriesComp /> */}
           </div>
           {/* <ContactInfoComp /> */}
         </div>

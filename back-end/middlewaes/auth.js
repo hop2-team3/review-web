@@ -8,7 +8,7 @@ exports.auth = (req, res, next) => {
       token = token.split(" ")[1];
       let user = jwt.verify(token, SECRET_KEY);
       req.userId = user.id;
-      req.name = user.name;
+      // req.name = user.name;
       next();
     } else {
       res.status(401).json({ message: "handah erhgui hereglegch bna." });

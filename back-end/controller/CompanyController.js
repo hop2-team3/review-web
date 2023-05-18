@@ -4,6 +4,7 @@ const SECRET_KEY = "default_secret";
 const bcrypt = require("bcrypt");
 
 exports.getUsers = async (req, res) => {
+  console.log(req.params);
   try {
     const users = await CompanyModel.find();
     return res.status(200).json({
@@ -11,13 +12,26 @@ exports.getUsers = async (req, res) => {
       data: users,
     });
   } catch (error) {
-    return res.status(400), json({ message: error, data: null });
+    return res.status(400).json({ message: error, data: null });
+  }
+};
+
+exports.getUsersCategories = async (req, res) => {
+  try {
+    const users = await CompanyModel.find({ category: req.category });
+    console.log(users);
+    return res.status(200).json({
+      data: users,
+    });
+  } catch (error) {
+    return res.status(400).json({ message: error, data: null });
   }
 };
 
 exports.signup = async (req, res, next) => {
   try {
-    const { companyName, password, email, link, phoneNumber } = req.body;
+    const { companyName, password, email, link, phoneNumber, category } =
+      req.body;
     const existingUser = await CompanyModel.findOne({ email: email });
     if (existingUser) {
       return res.status(409).json({ message: "burtgeltei hereglegch bna." });
@@ -26,6 +40,7 @@ exports.signup = async (req, res, next) => {
     const result = await CompanyModel.create({
       companyName: companyName,
       phoneNumber: phoneNumber,
+      category: category,
       email: email,
       password: hashedPassword,
       link: link,
@@ -91,4 +106,3 @@ exports.deleteUsers = async (req, res, next) => {
     return res.status(400).json({ message: error, data: null });
   }
 };
-console.log(typeof 1);

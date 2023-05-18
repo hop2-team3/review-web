@@ -1,11 +1,45 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { CategoryComp } from "../components/CategoryComp/CategoryComp";
 // import { Link } from "react-router-dom";
 import { ReviewCarouselComp } from "../components/ReviewCarouselComp/ReviewCarouselComp";
 import { RatingStarsComp } from "../components/RatingStarsComp";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 export const Home = () => {
+  const commentsURL = "http://localhost:8000/comments/";
+  const companiesURL = "http://localhost:8000/companies/";
+  const [comments, setComments] = useState();
+  const [companies, setCompanies] = useState();
+
+  useEffect(() => {
+    axios
+      .get(commentsURL)
+      .then(function (res) {
+        setComments(res.data.data);
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
+
+    axios
+      .get(companiesURL)
+      .then(function (res) {
+        setCompanies(res.data.data);
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
+    return () => {};
+  }, []);
+
+  const categories = [];
+  companies?.map((el) => {
+    categories.push(el.category);
+  });
+  let uniqueCats = [...new Set(categories)];
+
   return (
     <>
       <div className="flex flex-col w-[screen] h-[auto] relative md-flex">
@@ -34,111 +68,25 @@ export const Home = () => {
               </p>
             </div>
             <div className=" flex flex-wrap  h-[283px] w-[1255px] md-flex md-[32px] pt-[10px] place-content-evenly md-flex">
-              <CategoryComp categoryName={"bank"} />
-              <CategoryComp categoryName={"Jewelry store"} />
-              <CategoryComp categoryName={"restaurants"} />
-              <CategoryComp categoryName={"Coffee shop"} />
-              <CategoryComp categoryName={"Cosmetic store"} />
-              <CategoryComp categoryName={"Sport store"} />
-              <CategoryComp categoryName={"Shoe store"} />
-              <CategoryComp categoryName={"Men's clothing"} />
-              <CategoryComp categoryName={"Women's clothing"} />
-              {/* <CategoryComp categoryName={"clothing store"} />
-              <CategoryComp categoryName={"clothing store"} />
-              <CategoryComp categoryName={"clothing store"} /> */}
+              {uniqueCats?.map((el, index) => {
+                return <CategoryComp categoryName={el} key={index} />;
+              })}
             </div>
           </div>
         </div>
 
         <div className="h-[635px] w-[screen] flex flex-wrap s place-content-evenly bg-[#FCFBF3] scroll-smooth md-flex">
-          <ReviewCarouselComp
-            name={"tugu"}
-            company={"villiard"}
-            review={
-              "Yanziin fg dyuiagfkjda hfiduas f lasdjf fdukash f ghduklah fkd gfhiwughkjfuikbuigjhbkgfduiuihgtruiuhiglfuhilguif"
-            }
-            rate={2}
-          />
-          <ReviewCarouselComp
-            name={"gege"}
-            company={"villiard"}
-            review={
-              "Yanziin fg dyuiagfkjda hfiduas f lasdjf fdukash f ghduklah fkd gfhiwughkjfuikbuigjhbkgfduiuihgtruiuhiglfuhilguif"
-            }
-            rate={2}
-          />
-          <ReviewCarouselComp
-            name={"lolo"}
-            company={"villiard"}
-            review={
-              "Yanziin fg dyuiagfkjda hfiduas f lasdjf fdukash f ghduklah fkd gfhiwughkjfuikbuigjhbkgfduiuihgtruiuhiglfuhilguif"
-            }
-            rate={3}
-          />
-          <ReviewCarouselComp
-            name={"aanaaa"}
-            company={"villiard"}
-            review={
-              "Yanziin fg dyuiagfkjda hfiduas f lasdjf fdukash f ghduklah fkd gfhiwughkjfuikbuigjhbkgfduiuihgtruiuhiglfuhilguif"
-            }
-            rate={4}
-          />
-          <ReviewCarouselComp
-            name={"hihe"}
-            company={"villiard"}
-            review={
-              "Yanziin fg dyuiagfkjda hfiduas f lasdjf fdukash f ghduklah fkd gfhiwughkjfuikbuigjhbkgfduiuihgtruiuhiglfuhilguif"
-            }
-            rate={2}
-          />
-          <ReviewCarouselComp
-            name={"sanaa"}
-            company={"villiard"}
-            review={
-              "Yanziin fg dyuiagfkjda hfiduas f lasdjf fdukash f ghduklah fkd gfhiwughkjfuikbuigjhbkgfduiuihgtruiuhiglfuhilguif"
-            }
-            rate={2}
-          />
-          <ReviewCarouselComp
-            name={"ujee"}
-            company={"villiard"}
-            review={
-              "Yanziin fg dyuiagfkjda hfiduas f lasdjf fdukash f ghduklah fkd gfhiwughkjfuikbuigjhbkgfduiuihgtruiuhiglfuhilguif"
-            }
-            rate={2}
-          />
-          <ReviewCarouselComp
-            name={"khulanaaaa"}
-            company={"villiard"}
-            review={
-              "Yanziin fg dyuiagfkjda hfiduas f lasdjf fdukash f ghduklah fkd gfhiwughkjfuikbuigjhbkgfduiuihgtruiuhiglfuhilguif"
-            }
-            rate={2}
-          />
-          <ReviewCarouselComp
-            name={"tsts"}
-            company={"villiard"}
-            review={
-              "Yanziin fg dyuiagfkjda hfiduas f lasdjf fdukash f ghduklah fkd gfhiwughkjfuikbuigjhbkgfduiuihgtruiuhiglfuhilguif"
-            }
-            rate={2}
-          />
-          <ReviewCarouselComp
-            name={"aaaa"}
-            company={"villiard"}
-            review={
-              "Yanziin fg dyuiagfkjda hfiduas f lasdjf fdukash f ghduklah fkd gfhiwughkjfuikbuigjhbkgfduiuihgtruiuhiglfuhilguif"
-            }
-            rate={2}
-          />
-          <ReviewCarouselComp
-            name={"tugu"}
-            company={"villiard"}
-            review={
-              "Yanziin fg dyuiagfkjda hfiduas f lasdjf fdukash f ghduklah fkd gfhiwughkjfuikbuigjhbkgfduiuihgtruiuhiglfuhilguif"
-            }
-            rate={2}
-          />
+          {comments?.map((el, index) => {
+            return (
+              <ReviewCarouselComp
+                name={el.firstname}
+                company={el.lastname}
+                review={el.comment}
+                rate={el.rate}
+                key={index}
+              />
+            );
+          })}
         </div>
 
         <div className=" flex items-center justify-center w-[screen] h-[516px] bg-[#022A1C] md-flex">

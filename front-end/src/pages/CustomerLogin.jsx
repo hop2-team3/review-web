@@ -1,14 +1,14 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import React from "react";
 import googleBtn from "../assets/googleBtn.png";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 export const CustomerLogin = () => {
-  const [email, setEmail] = useState("");
+  const email = useRef("");
+  const password = useRef("");
+  const URL = "http://localhost:8000/customers/login";
   const [passwordType, setPasswordType] = useState("password");
-  const [passwordInput, setPasswordInput] = useState("");
-  const handlePasswordChange = (evnt) => {
-    setPasswordInput(evnt.target.value);
-  };
   const togglePassword = () => {
     if (passwordType === "password") {
       setPasswordType("text");
@@ -17,24 +17,43 @@ export const CustomerLogin = () => {
     setPasswordType("password");
   };
 
+  const click = () => {
+    if (email.current.value !== "" && password.current.value !== "") {
+      axios
+        .post(URL, {
+          email: email.current.value,
+          password: password.current.value,
+        })
+        .then(function (res) {
+          // console.log(res);
+          localStorage.setItem("token", res.data.token);
+          window.location.replace("/");
+        })
+        .catch(function (error) {
+          // console.log(error);
+          alert(error.response.data.message);
+        });
+    }
+  };
+  const deleteToken = () => {
+    localStorage.removeItem("token");
+  };
   return (
     <div>
       <div className="bg-[#FCFBF3] w-screen h-screen flex justify-center items-start sm:items-center ">
         <div className="bg-[#FFFFFF] w-[390px] h-[500px] sm:w-[560px] h-[530px] flex items-center justify-around flex-col border rounded-2xl border-[#E5E5DD] mt-[56px] sm:mt-0">
           <div className="w-[358px] text-xl font-bold font-inter  flex items-start sm:w-[530px] sm:text-2xl">
-            Log in to Trustpilot Business
+            Log in to Views
           </div>
           <input
-            value={email}
             type="text"
-            onChange={(event) => setEmail(event.target.value)}
-            placeholder="Work Email"
+            ref={email}
+            placeholder="Email"
             className="w-[358px] h-[44px] border rounded border-[#696A6A] p-4 sm:w-[510px]"
           ></input>
           <input
             type={passwordType}
-            onChange={handlePasswordChange}
-            value={passwordInput}
+            ref={password}
             name="password"
             placeholder="Password"
             className="w-[358px] h-[44px] border rounded border-[#696A6A] p-4 sm:w-[510px]"
@@ -55,15 +74,8 @@ export const CustomerLogin = () => {
             </button>
           </div>
           <button
-            onClick={() => {
-              console.log("clicked");
-            }}
-            disabled={!email || !passwordInput}
-            className={`w-[358px] h-[48px] ${
-              !email || !passwordInput
-                ? "bg-[#1c1c1c30] text-[#696A6A]"
-                : "bg-[#205cd4] text-[#FFFFFF] hover:bg-[#D8E4FA] hover:text-[#000000]"
-            } rounded-full font-inter font-bold sm:w-[500px]`}
+            onClick={click}
+            className={`w-[358px] h-[48px] bg-[#205cd4] text-[#FFFFFF] hover:bg-[#D8E4FA] hover:text-[#000000] rounded-full font-inter font-bold sm:w-[500px]`}
           >
             Log in
           </button>
@@ -80,15 +92,16 @@ export const CustomerLogin = () => {
           </button>
           <div className=" w-[358px] sm:w-[510px] flex justify-start ">
             <div className="flex justify-between text-sm w-[358px] sm:w-[400px] sm:text-base ">
-              <div>Don't have a Trustpilot account?</div>
-              <a
+              <div>Don't have a Views account?</div>
+              <Link
                 className="text-[#205CD4] hover:underline underline-offset-2 "
-                href=""
+                to="../customerSignup"
               >
                 Sign up for free now.
-              </a>
+              </Link>
             </div>
           </div>
+          <button onClick={deleteToken}>delete</button>
         </div>
       </div>
     </div>

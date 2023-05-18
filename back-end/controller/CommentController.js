@@ -1,4 +1,5 @@
 const CommentModel = require("../models/commentModel");
+const CustomerModel = require("../models/customerModel");
 const jwt = require("jsonwebtoken");
 const SECRET_KEY = "default_secret";
 const bcrypt = require("bcrypt");
@@ -16,12 +17,16 @@ exports.getComments = async (req, res) => {
 };
 
 exports.newComment = async (req, res) => {
-  const { comment, rate } = req.body;
+  const { comment, rate, title } = req.body;
+  const user = await CustomerModel.findOne({ token: req.userId });
   try {
     if (comment && rate) {
-      const newComment = CommentModel.create({
+      const newComment = await CommentModel.create({
         comment: comment,
         rate: rate,
+        title: title,
+        firstname: user.firstname,
+        lastname: user.lastname,
       });
       return res.status(200).json({
         message: true,

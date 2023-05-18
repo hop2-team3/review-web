@@ -38,7 +38,7 @@ export const ExploreCategoriesComp = (props) => {
         <div className="flex h-[40px] pt-4">
           <button className="flex flex-row w-[167px] place-content-evenly cursor-pointer  ">
             <button
-              onclick={handleClick}
+              onClick={handleClick}
               className="h-[16px] w-[16px] "
               style={{ backgroundImage: `url(${world}` }}
             ></button>
@@ -53,6 +53,7 @@ export const ExploreCategoriesComp = (props) => {
             <div className="border-l h-[16px]"></div>
             <p className="h-[15px] w-[28px] font-[400] text-[12px]">Bank</p>
           </button>
+
           {/* <button className=" h-[35px] color-[#205CD4] w-[133px] place-self-end">
             Latest reviews
           </button> */}

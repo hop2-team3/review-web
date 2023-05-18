@@ -10,6 +10,10 @@ export const BusinessSignUp = () => {
   const phoneNumber = useRef(0);
   const password = useRef("");
   const passwordr = useRef("");
+  const category = useRef("");
+
+  const [passwordBg, setPasswordBg] = useState("border-gray");
+
   const click = () => {
     if (
       link.current.value !== "" &&
@@ -17,7 +21,8 @@ export const BusinessSignUp = () => {
       email.current.value !== "" &&
       phoneNumber.current.value !== "" &&
       password.current.value !== "" &&
-      passwordr.current.value !== ""
+      passwordr.current.value !== "" &&
+      category.current.value !== ""
     ) {
       if (password.current.value === passwordr.current.value) {
         axios
@@ -27,6 +32,9 @@ export const BusinessSignUp = () => {
             phoneNumber: phoneNumber.current.value,
             email: email.current.value,
             password: password.current.value,
+            category:
+              category.current.value.charAt(0).toUpperCase() +
+              category.current.value.slice(1),
           })
           .then(function (res) {
             console.log(res);
@@ -35,10 +43,8 @@ export const BusinessSignUp = () => {
             console.log(error);
           });
       } else {
-        console.log("password buruu bna");
+        setPasswordBg("[red]");
       }
-    } else {
-      console.log("dutuu bna");
     }
   };
 
@@ -99,6 +105,7 @@ export const BusinessSignUp = () => {
             <input
               className="border border-border-gray rounded-sm h-[44px]  w-[262px] sm:w-[422px] pl-2"
               placeholder="Category"
+              ref={category}
             ></input>
           </li>
           <li>
@@ -118,7 +125,7 @@ export const BusinessSignUp = () => {
           </li>
           <li>
             <input
-              className="border border-border-gray rounded-sm h-[44px]  w-[262px] sm:w-[422px] pl-2"
+              className={`border border-${passwordBg} rounded-sm h-[44px]  w-[262px] sm:w-[422px] pl-2`}
               placeholder="Password"
               type="Password"
               ref={password}
@@ -126,7 +133,7 @@ export const BusinessSignUp = () => {
           </li>
           <li>
             <input
-              className="border border-border-gray rounded-sm h-[44px]  w-[262px] sm:w-[422px] pl-2"
+              className={`border border-${passwordBg} rounded-sm h-[44px]  w-[262px] sm:w-[422px] pl-2`}
               placeholder="Repeat password"
               type="Password"
               ref={passwordr}
@@ -140,7 +147,13 @@ export const BusinessSignUp = () => {
           Create free account
         </button>
 
-        <button onClick={deleteToken}>DELETE</button>
+        {/* <button
+          onClick={click}
+          disabled={!email || !password}
+          className={`w-[358px] h-[48px] bg-[#205cd4] text-[#FFFFFF] hover:bg-[#D8E4FA] hover:text-[#000000] rounded-sm font-inter-medium text-[color:white]  w-[262px] sm:w-[422px] h-[44px] bg-deep-blue `}
+        >
+          login
+        </button> */}
       </div>
     </div>
   );
