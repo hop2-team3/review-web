@@ -4,6 +4,7 @@ const {
   signup,
   login,
   getUsers,
+  getUser,
   updateUser,
   deleteUsers,
   getUsersCategories,
@@ -11,6 +12,7 @@ const {
 
 router
   .get("/", getUsers)
+  .get("/:id", getUser)
   .post("/signup", signup)
   .post("/login", login)
   .post("/", getUsersCategories)

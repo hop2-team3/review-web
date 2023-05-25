@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { ExploreCategoriesComp } from "../components/ExploreCategoriesComp";
 import { ContactInfoComp } from "../components/ContactInfoComp";
 import { CategoryExploreRatingComp } from "../components/CategoryExploreRatingComp";
@@ -8,23 +8,16 @@ import dugood from "../assets/dugood.png";
 import southend from "../assets/SouthEnd.png";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { Context } from "../components/DataContext";
 
 export const CategoriesExplore = (props) => {
-  const { id } = useParams();
-  const URL = "http://localhost:8000/companies";
-  console.log(id);
+  const exploringCat = useParams();
+  const { reviews, setReviews, companies, setCompanies } = useContext(Context);
 
-  useEffect(() => {
-    axios
-      .post(URL, { category: id })
-      .then(function (res) {
-        console.log(res.data);
-      })
-      .catch(function (err) {
-        console.log(err);
-      });
-    return () => {};
-  }, []);
+  let companiesList;
+  if (companies) {
+    companiesList = companies.filter((el) => el.category === exploringCat.id);
+  }
 
   return (
     <>
@@ -38,26 +31,23 @@ export const CategoriesExplore = (props) => {
 
         <div className="w-[screen] h-[auto] bg-[#FCFBF3] flex flex-row items-center justify-center md-flex">
           <div className="flex flex-start">
-            {/* <CategoryExploreRatingComp />{" "}
+            <CategoryExploreRatingComp />{" "}
           </div>
 
           <div className="flex flex-col w-[880px] bg-[#FCFBF3] items-center jusitify-center md-flex">
-            <ExploreCategoriesComp
-              CompanyName={"Du Good Union"}
-              TrustScore={" TrustScore 5.0"}
-              bg={dugood}
-            />
-            <ExploreCategoriesComp
-              CompanyName={"South End"}
-              TrustScore={"TrustScore 4.9"}
-              bg={southend}
-            />
-            <CompanyReviewedComp />
-            <ExploreCategoriesComp />
-            <ExploreCategoriesComp />
-            <ExploreCategoriesComp />
-            <ExploreCategoriesComp />
-            <ExploreCategoriesComp /> */}
+            {companiesList
+              ? companiesList.map((el, index) => {
+                  return (
+                    <CompanyReviewedComp
+                      companyName={el.companyName}
+                      rating={el.rating}
+                      key={index}
+                      link={el.link}
+                      reviews={el.reviews}
+                    />
+                  );
+                })
+              : ""}
           </div>
           {/* <ContactInfoComp /> */}
         </div>

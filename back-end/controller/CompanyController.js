@@ -4,9 +4,20 @@ const SECRET_KEY = "default_secret";
 const bcrypt = require("bcrypt");
 
 exports.getUsers = async (req, res) => {
-  console.log(req.params);
   try {
     const users = await CompanyModel.find();
+    return res.status(200).json({
+      message: true,
+      data: users,
+    });
+  } catch (error) {
+    return res.status(400).json({ message: error, data: null });
+  }
+};
+
+exports.getUser = async (req, res) => {
+  try {
+    const users = await CompanyModel.find({ _id: req.params.id });
     return res.status(200).json({
       message: true,
       data: users,

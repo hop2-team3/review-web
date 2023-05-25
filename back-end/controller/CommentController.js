@@ -16,8 +16,21 @@ exports.getComments = async (req, res) => {
   }
 };
 
+exports.getComment = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const comments = await CommentModel.find({ companyId: id });
+    return res.status(200).json({
+      message: true,
+      data: comments,
+    });
+  } catch (error) {
+    return res.status(400), json({ message: error, data: null });
+  }
+};
+
 exports.newComment = async (req, res) => {
-  const { comment, rate, title } = req.body;
+  const { comment, rate, title, companyId, date } = req.body;
   const user = await CustomerModel.findOne({ token: req.userId });
   try {
     if (comment && rate) {
@@ -27,6 +40,8 @@ exports.newComment = async (req, res) => {
         title: title,
         firstname: user.firstname,
         lastname: user.lastname,
+        companyId: companyId,
+        dateOfExperience: date,
       });
       return res.status(200).json({
         message: true,

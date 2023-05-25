@@ -1,13 +1,20 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { RatingStarsComp } from "../components/RatingStarsComp";
+import { useParams } from "react-router-dom";
+import { Context } from "../components/DataContext";
+import axios from "axios";
 
 export const Evaluate = () => {
+  const param = useParams();
+  console.log(param.id);
+
+  const commentsURL = "http://localhost:8000/comments/";
+
+  const [date, setDate] = useState("");
   const [rate, setRate] = useState(1);
   const handleClick = (num) => {
     setRate(num);
   };
-
-  const [value, onChange] = useState(new Date());
 
   const comment = useRef("");
   const title = useRef("");
@@ -37,6 +44,29 @@ export const Evaluate = () => {
     default:
       break;
   }
+
+  const submit = () => {
+    if (
+      comment.current.value !== "" &&
+      title.current.value !== "" &&
+      date !== ""
+    ) {
+      axios
+        .post(commentsURL, {
+          comment: comment.current.value,
+          title: title.current.value,
+          companyId: param.id,
+          date: date,
+          rate: rate,
+        })
+        .then(function (res) {
+          console.log(res.data);
+        })
+        .catch(function (err) {
+          console.log(err.data.message);
+        });
+    }
+  };
   return (
     <div className="w-screen h-[auto] ">
       <div className="w-screen h-[90px] border-1px border-[1px] border-[#E5e5dd] flex items-center justify-center">
@@ -66,9 +96,8 @@ export const Evaluate = () => {
             <p>Date of experience</p>
             <input
               className="w-[90%] sm:w-[460px] h-[44px] border-[1px] font-normal rounded-[4px] py-[10px] px-[16px]"
-              type="text"
-              placeholder="YY.MM.DD"
-              onClick={console.log(value)}
+              type="date"
+              onChange={(e) => setDate(e.target.value)}
             />
           </div>
           <div>
@@ -79,6 +108,14 @@ export const Evaluate = () => {
               placeholder="What's important for people to know?"
               ref={title}
             />
+          </div>
+          <div className="flex justify-end">
+            <button
+              onClick={submit}
+              className="rounded-sm font-inter-medium text-[color:white] mr-[10%] sm:mr-[0] w-[80px] sm:w-[150px] h-[44px] bg-deep-blue"
+            >
+              Sumbit
+            </button>
           </div>
         </div>
       </div>

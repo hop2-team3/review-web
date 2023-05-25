@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Review from "../assets/review.png";
 import star from "../assets/od.svg";
 import ver from "../assets/ver.svg";
@@ -7,8 +7,31 @@ import pro from "../assets/pro.svg";
 import logo from "../assets/iogo.svg";
 import { RatingStarsComp } from "../components/RatingStarsComp";
 import { ReviewComp } from "../components/ReviewComp";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { Context } from "../components/DataContext";
+import axios from "axios";
+
 export const ReviewPage = () => {
+  const param = useParams();
+  const { reviews, setReviews, companies, setCompanies } = useContext(Context);
+  const [data, setData] = useState();
+  let company;
+  if (companies) {
+    company = companies.find((el) => el.companyName == param.id);
+  }
+  const commentsURL = `http://localhost:8000/comments/${company._id}`;
+  useEffect(() => {
+    axios
+      .get(commentsURL)
+      .then(function (res) {
+        setData(res.data.data);
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
+    return () => {};
+  }, []);
+
   return (
     <>
       <div className="flex flex-col items-center ">
@@ -19,42 +42,21 @@ export const ReviewPage = () => {
           />
           <div className="flex flex-col h-[149px] w-[349px] justify-between]">
             <h1 className="inter text-[18px] font-black sm:text-[32px]">
-              DuGood Credit Union
+              {company.companyName}
             </h1>
             <h1 className="inter text-[18px]  font-normal sm:text-[#696A6A] text-base">
-              Reviews 2,938 • Excellent
+              Reviews {company.reviews} • {company.rating}
             </h1>
-            <div className="h-[50px] w-[220px] flex flex-row justify-between">
-              <img
-                className="h-[40px] w-[40px] scale-75 sm:scale-100"
-                src={star}
-              />
-              <img
-                className="h-[40px] w-[40px] scale-75 sm:scale-100"
-                src={star}
-              />
-              <img
-                className="h-[40px] w-[40px] scale-75 sm:scale-100"
-                src={star}
-              />
-              <img
-                className="h-[40px] w-[40px] scale-75 sm:scale-100"
-                src={star}
-              />
-              <img
-                className="h-[40px] w-[40px] scale-75 sm:scale-100"
-                src={star}
-              />
-            </div>
-            <img
-              className="w-[133px] h-[22px] scale-80 sm:scale-100"
+            <RatingStarsComp rate={company.rating} />
+            {/* <img
+              className="w-[133px] h-[22px] scale-80 sm:scale-100 mt-[10px]"
               src={ver}
-            />
+            /> */}
           </div>
           <div>
             <button className="h-[70px] w-[350px] border-[#1B69D9] flex items-center justify-center flex-col rounded border-[1px]  md:flex hidden ">
               <h1 className="text-[#1B69D9] inter font-bold ">
-                www.dugood.org
+                {company.link}
               </h1>
               <h1 className="text-[#696A6A] inter font-normal">
                 Visit this website
@@ -67,7 +69,7 @@ export const ReviewPage = () => {
             <img src={vis} className="h-[16px] w-[16px]" />
             <h1 className="text-[#1B69D9] inter font-normal">
               {" "}
-              www.dugood.org
+              {company.link}
             </h1>
           </div>
           <div className="w-screen h-auto flex flex-col gap-[10px] items-center mt-[10px]">
@@ -76,7 +78,7 @@ export const ReviewPage = () => {
                 <img className="h-[40px] w-[40px]" src={pro} />
                 <Link
                   className="text-[#146C94] cursor-pointer hover:underline"
-                  to="/evaluate"
+                  to={`/evaluate/${company._id}`}
                 >
                   Write a review
                 </Link>
@@ -134,6 +136,19 @@ export const ReviewPage = () => {
                 <h1 className="inter font-light">1%</h1>
               </div>
             </div>
+            {data
+              ? data.map((el, index) => {
+                  return (
+                    <ReviewComp
+                      name={el.firstname}
+                      title={el.title}
+                      review={el.comment}
+                      date={el.dateOfExperience}
+                      key={index}
+                    />
+                  );
+                })
+              : ""}
           </div>
         </div>
       </div>
