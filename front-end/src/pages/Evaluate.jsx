@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from "react";
+import React, { useState, useRef, useContext, useEffect } from "react";
 import { RatingStarsComp } from "../components/RatingStarsComp";
 import { useParams } from "react-router-dom";
 import { Context } from "../components/DataContext";
@@ -9,8 +9,10 @@ export const Evaluate = () => {
   console.log(param.id);
 
   const commentsURL = "http://localhost:8000/comments/";
+  const copmaniesURL = `http://localhost:8000/companies/${param.id}`;
 
   const [date, setDate] = useState("");
+  const [data, setData] = useState();
   const [rate, setRate] = useState(1);
   const handleClick = (num) => {
     setRate(num);
@@ -45,6 +47,18 @@ export const Evaluate = () => {
       break;
   }
 
+  useEffect(() => {
+    axios
+      .get(copmaniesURL)
+      .then(function (res) {
+        setData(res.data.data[0]);
+        console.log(res.data.data[0]);
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
+    return () => {};
+  }, []);
   const submit = () => {
     if (
       comment.current.value !== "" &&
@@ -73,8 +87,8 @@ export const Evaluate = () => {
         <div className="w-[510px] h-[42px] flex">
           <img className="w-[60px] h-[42px]" src="" alt="logo" />
           <div>
-            <p className="w-auto h-[20px]">Name</p>
-            <p className="w-auto h-[22px]">Link</p>
+            <p className="w-auto h-[20px]">{data ? data.companyName : ""}</p>
+            <p className="w-auto h-[22px]">{data ? data.link : ""}</p>
           </div>
         </div>
       </div>

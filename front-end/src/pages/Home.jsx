@@ -9,30 +9,30 @@ import { useParams } from "react-router-dom";
 import { Context } from "../components/DataContext";
 
 export const Home = () => {
-  const commentsURL = "http://localhost:8000/comments/";
-  const companiesURL = "http://localhost:8000/companies/";
+  // const commentsURL = "http://localhost:8000/comments/";
+  // const companiesURL = "http://localhost:8000/companies/";
   const { reviews, setReviews, companies, setCompanies } = useContext(Context);
 
-  useEffect(() => {
-    axios
-      .get(commentsURL)
-      .then(function (res) {
-        setReviews(res.data.data);
-      })
-      .catch(function (err) {
-        console.log(err);
-      });
+  // useEffect(() => {
+  //   axios
+  //     .get(commentsURL)
+  //     .then(function (res) {
+  //       setReviews(res.data.data);
+  //     })
+  //     .catch(function (err) {
+  //       console.log(err);
+  //     });
 
-    axios
-      .get(companiesURL)
-      .then(function (res) {
-        setCompanies(res.data.data);
-      })
-      .catch(function (err) {
-        console.log(err);
-      });
-    return () => {};
-  }, []);
+  //   axios
+  //     .get(companiesURL)
+  //     .then(function (res) {
+  //       setCompanies(res.data.data);
+  //     })
+  //     .catch(function (err) {
+  //       console.log(err);
+  //     });
+  //   return () => {};
+  // }, []);
 
   const categories = [];
   companies?.map((el) => {

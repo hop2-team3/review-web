@@ -20,6 +20,7 @@ export const ReviewPage = () => {
     company = companies.find((el) => el.companyName == param.id);
   }
   const commentsURL = `http://localhost:8000/comments/${company._id}`;
+
   useEffect(() => {
     axios
       .get(commentsURL)
