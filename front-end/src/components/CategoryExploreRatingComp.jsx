@@ -29,7 +29,9 @@ export const CategoryExploreRatingComp = () => {
             id="countries"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[4px] focus:ring-blue-500 focus:border-blue-500 block w-[270px] h-[48px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           >
-            <option selected>Choose a district</option>
+            <option defaultValue={"choose a district"}>
+              Choose a district
+            </option>
             <option value="KU">Khan Uul</option>
             <option value="SH">Songino hairhan</option>
             <option value="BG">Bayangol</option>

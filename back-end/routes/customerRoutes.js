@@ -8,8 +8,10 @@ const {
   deleteUsers,
 } = require("../controller/CustomerController");
 
+const { auth } = require("../middlewares/auth");
+
 router
-  .get("/", getUsers)
+  .get("/", auth, getUsers)
   .post("/signup", signup)
   .post("/login", login)
   .put("/", updateUser)

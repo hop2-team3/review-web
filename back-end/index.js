@@ -8,9 +8,9 @@ dotenv.config();
 const cors = require("cors");
 const port = process.env.BACK_END_PORT;
 const app = express();
-const CustomerRoutes = require("./routes/CustomerRoutes");
+const CustomerRoutes = require("./routes/customerRoutes");
 const CompanyRoutes = require("./routes/CompanyRoutes");
-const CommentRoutes = require("./routes/CommentRoutes");
+const CommentRoutes = require("./routes/commentRoutes");
 
 app.use(cors());
 app.use(express.json());

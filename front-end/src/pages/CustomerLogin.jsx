@@ -1,14 +1,17 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import React from "react";
 import googleBtn from "../assets/googleBtn.png";
-import { Link } from "react-router-dom";
+import { Link, json } from "react-router-dom";
 import axios from "axios";
+import { Context } from "../components/DataContext";
 
 export const CustomerLogin = () => {
   const email = useRef("");
   const password = useRef("");
-  const URL = "http://localhost:8000/customers/login";
   const [passwordType, setPasswordType] = useState("password");
+  const { user, setUser, loggedIn, setLoggedIn } = useContext(Context);
+
+  const URL = "http://localhost:8000/customers/login";
   const togglePassword = () => {
     if (passwordType === "password") {
       setPasswordType("text");
@@ -25,18 +28,21 @@ export const CustomerLogin = () => {
           password: password.current.value,
         })
         .then(function (res) {
-          // console.log(res);
+          // console.log(res.data);
           localStorage.setItem("token", res.data.token);
+          localStorage.setItem("user", JSON.stringify(res.data.user));
+          // setUser(res.data.user);
+          setLoggedIn(true);
           window.location.replace("/");
         })
         .catch(function (error) {
-          // console.log(error);
+          console.log(error);
           alert(error.response.data.message);
         });
     }
   };
   const deleteToken = () => {
-    localStorage.removeItem("token");
+    localStorage.clear();
   };
   return (
     <div>

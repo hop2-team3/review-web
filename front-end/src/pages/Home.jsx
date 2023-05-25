@@ -1,23 +1,23 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { CategoryComp } from "../components/CategoryComp/CategoryComp";
 // import { Link } from "react-router-dom";
 import { ReviewCarouselComp } from "../components/ReviewCarouselComp/ReviewCarouselComp";
 import { RatingStarsComp } from "../components/RatingStarsComp";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { Context } from "../components/DataContext";
 
 export const Home = () => {
   const commentsURL = "http://localhost:8000/comments/";
   const companiesURL = "http://localhost:8000/companies/";
-  const [comments, setComments] = useState();
-  const [companies, setCompanies] = useState();
+  const { reviews, setReviews, companies, setCompanies } = useContext(Context);
 
   useEffect(() => {
     axios
       .get(commentsURL)
       .then(function (res) {
-        setComments(res.data.data);
+        setReviews(res.data.data);
       })
       .catch(function (err) {
         console.log(err);
@@ -76,7 +76,7 @@ export const Home = () => {
         </div>
 
         <div className="h-[635px] w-[screen] flex flex-wrap s place-content-evenly bg-[#FCFBF3] scroll-smooth md-flex">
-          {comments?.map((el, index) => {
+          {reviews?.map((el, index) => {
             return (
               <ReviewCarouselComp
                 name={el.firstname}

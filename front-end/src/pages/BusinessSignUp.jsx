@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
 import googleLogo from "../assets/googleLogo.png";
 import axios from "axios";
 
@@ -11,7 +11,6 @@ export const BusinessSignUp = () => {
   const password = useRef("");
   const passwordr = useRef("");
   const category = useRef("");
-
   const [passwordBg, setPasswordBg] = useState("border-gray");
 
   const click = () => {
@@ -38,6 +37,7 @@ export const BusinessSignUp = () => {
           })
           .then(function (res) {
             console.log(res);
+            window.location.replace("/");
           })
           .catch(function (error) {
             console.log(error);

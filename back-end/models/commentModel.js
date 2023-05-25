@@ -9,10 +9,10 @@ const ReviewScheme = new Schema({
   comment: String,
   rate: Number,
   reviews: Number,
+  companyId: String,
   dateOfExperience: String,
   date: { type: Date, default: Date.now },
   owner: { type: Schema.ObjectId, ref: "Users" },
-  owner: { type: Schema.ObjectId, ref: "Companies" },
 });
 
 const ReviewModel = model("Reviews", ReviewScheme);
