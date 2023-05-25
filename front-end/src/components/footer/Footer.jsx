@@ -6,7 +6,7 @@ export const Footer = () => {
   return (
     <div>
       <div className="bg-cod-gray font-inter">
-        <div className="footer sm:flex flex-wrap text-[color:white] justify-around h-[300px]">
+        <div className="footer sm:flex flex-wrap text-[color:white] justify-around h-full">
           <div className="footer1">
             <ul className="space-y-10">
               <li>

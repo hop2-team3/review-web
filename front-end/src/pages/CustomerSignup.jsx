@@ -1,5 +1,7 @@
 import React, { useRef, useState } from "react";
 import googleLogo from "../assets/googleLogo.png";
+import eyeLogo from "../assets/eye.png";
+import eyeslashLogo from "../assets/eye-slash.png";
 import axios from "axios";
 
 export const CustomerSignUp = () => {
@@ -9,8 +11,25 @@ export const CustomerSignUp = () => {
   const email = useRef("");
   const password = useRef("");
   const passwordr = useRef("");
+  const [passwordType, setPasswordType] = useState("password");
+  const [passwordTypeRep, setPasswordTypeRep] = useState("password");
 
   const [passwordBg, setPasswordBg] = useState("border-gray");
+
+  const togglePassword = () => {
+    if (passwordType === "password") {
+      setPasswordType("text");
+      return;
+    }
+    setPasswordType("password");
+  };
+  const togglePasswordRep = () => {
+    if (passwordTypeRep === "password") {
+      setPasswordTypeRep("text");
+      return;
+    }
+    setPasswordTypeRep("password");
+  };
 
   const click = () => {
     if (
@@ -53,9 +72,9 @@ export const CustomerSignUp = () => {
           Start writing reviews today
         </div>
       </div>
-      <div className=" flex flex-col justify-center items-center p-[16px] bg-[white] rounded-3xl space-y-5  h-[886px] w-[326px] sm:h-[910px] sm:w-[520px] sm:p-[48px]">
+      <div className=" flex flex-col justify-center items-center p-[16px] bg-[white] rounded-3xl space-y-5 h-[760px] sm:h-[886px] w-[326px] sm:h-[910px] sm:w-[520px] sm:p-[48px]">
         <div className="sm:w-full">
-          <div className="w-[197px] h-[78px] text-[30px] font-inter font-bold   sm:w-[325px] sm:h-[36px]">
+          <div className="w-[197px] h-[78px] text-[30px] font-inter font-bold sm:w-[325px] sm:h-[36px]">
             Create a free account
           </div>
         </div>
@@ -103,22 +122,47 @@ export const CustomerSignUp = () => {
               ></input>
             </li>
             <li>
-              <input
-                className={`border border-${passwordBg} rounded-sm h-[44px]  w-[262px] sm:w-[422px] pl-2`}
-                placeholder="Password"
-                type="Password"
-                ref={password}
-              ></input>
+              <div className="flex justify-between w-[262px] sm:w-[422px]">
+                <input
+                  className={`border border-${passwordBg} rounded-sm h-[44px]  w-[262px] sm:w-[370px] pl-2`}
+                  placeholder="Password"
+                  type={passwordType}
+                  ref={password}
+                ></input>
+                <button
+                  className="flex justify-center align-center text-[#205CD4] w-[44px] h-[44px] border border-border-gray rounded-sm"
+                  onClick={togglePassword}
+                >
+                  {passwordType === "password" ? (
+                    <img src={eyeLogo} className=" mt-3" />
+                  ) : (
+                    <img src={eyeslashLogo} className=" mt-3" />
+                  )}
+                </button>
+              </div>
             </li>
             <li>
-              <input
-                className={`border border-${passwordBg} rounded-sm h-[44px]  w-[262px] sm:w-[422px] pl-2`}
-                placeholder="Repeat password"
-                ref={passwordr}
-                type="Password"
-              ></input>
+              <div className="flex justify-between w-[262px] sm:w-[422px]">
+                <input
+                  className={`border border-${passwordBg} rounded-sm h-[44px]  w-[262px] sm:w-[370px] pl-2`}
+                  placeholder="Repeat password"
+                  ref={passwordr}
+                  type={passwordTypeRep}
+                ></input>
+                <button
+                  className="flex justify-center align-center text-[#205CD4] w-[44px] h-[44px] border border-border-gray rounded-sm"
+                  onClick={togglePasswordRep}
+                >
+                  {passwordTypeRep === "password" ? (
+                    <img src={eyeLogo} className=" mt-3" />
+                  ) : (
+                    <img src={eyeslashLogo} className=" mt-3" />
+                  )}
+                </button>
+              </div>
             </li>
           </ul>
+
           <button
             className=" rounded-sm font-inter-medium text-[color:white] mt-5 md:mt-0   w-[262px] sm:w-[422px] h-[44px] bg-deep-blue "
             onClick={click}
