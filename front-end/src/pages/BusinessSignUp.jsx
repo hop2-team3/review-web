@@ -1,5 +1,9 @@
 import React, { useRef, useState, useContext } from "react";
+import ImageUploading from "react-images-uploading";
 import googleLogo from "../assets/googleLogo.png";
+import eyeLogo from "../assets/eye.png";
+import eyeslashLogo from "../assets/eye-slash.png";
+import trashIcon from "../assets/trash.png";
 import axios from "axios";
 
 export const BusinessSignUp = () => {
@@ -11,7 +15,34 @@ export const BusinessSignUp = () => {
   const password = useRef("");
   const passwordr = useRef("");
   const category = useRef("");
+  const [passwordType, setPasswordType] = useState("password");
+  const [passwordTypeRep, setPasswordTypeRep] = useState("password");
+
   const [passwordBg, setPasswordBg] = useState("border-gray");
+
+  const togglePassword = () => {
+    if (passwordType === "password") {
+      setPasswordType("text");
+      return;
+    }
+    setPasswordType("password");
+  };
+  const togglePasswordRep = () => {
+    if (passwordTypeRep === "password") {
+      setPasswordTypeRep("text");
+      return;
+    }
+    setPasswordTypeRep("password");
+  };
+
+  const [images, setImages] = React.useState([]);
+  const maxNumber = 1;
+
+  const onChange = (imageList, addUpdateIndex) => {
+    // data for submit
+    console.log(imageList, addUpdateIndex);
+    setImages(imageList);
+  };
 
   const click = () => {
     if (
@@ -67,7 +98,6 @@ export const BusinessSignUp = () => {
             Create a free account
           </div>
         </div>
-
         <div className="flex flex-row">
           <a href="google.com">
             <img className="w-[42px]" src={googleLogo} alt="googleLogo" />
@@ -124,29 +154,112 @@ export const BusinessSignUp = () => {
             ></input>
           </li>
           <li>
-            <input
-              className={`border border-${passwordBg} rounded-sm h-[44px]  w-[262px] sm:w-[422px] pl-2`}
-              placeholder="Password"
-              type="Password"
-              ref={password}
-            ></input>
+            <div className="flex justify-between w-[262px] sm:w-[422px]">
+              <input
+                className={`border border-${passwordBg} rounded-sm h-[44px]  w-[262px] sm:w-[370px] pl-2`}
+                placeholder="Password"
+                type={passwordType}
+                ref={password}
+              ></input>
+              <button
+                className="flex justify-center align-center text-[#205CD4] w-[44px] h-[44px] border border-border-gray rounded-sm"
+                onClick={togglePassword}
+              >
+                {passwordType === "password" ? (
+                  <img src={eyeLogo} className=" mt-3" />
+                ) : (
+                  <img src={eyeslashLogo} className=" mt-3" />
+                )}
+              </button>
+            </div>
           </li>
           <li>
-            <input
-              className={`border border-${passwordBg} rounded-sm h-[44px]  w-[262px] sm:w-[422px] pl-2`}
-              placeholder="Repeat password"
-              type="Password"
-              ref={passwordr}
-            ></input>
+            <div className="flex justify-between w-[262px] sm:w-[422px]">
+              <input
+                className={`border border-${passwordBg} rounded-sm h-[44px]  w-[262px] sm:w-[370px] pl-2`}
+                placeholder="Repeat password"
+                ref={passwordr}
+                type={passwordTypeRep}
+              ></input>
+              <button
+                className="flex justify-center align-center text-[#205CD4] w-[44px] h-[44px] border border-border-gray rounded-sm"
+                onClick={togglePasswordRep}
+              >
+                {passwordTypeRep === "password" ? (
+                  <img src={eyeLogo} className=" mt-3" />
+                ) : (
+                  <img src={eyeslashLogo} className=" mt-3" />
+                )}
+              </button>
+            </div>
           </li>
         </ul>
+        <div className="App">
+          <ImageUploading
+            multiple
+            value={images}
+            onChange={onChange}
+            maxNumber={maxNumber}
+            dataURLKey="data_url"
+          >
+            {({
+              imageList,
+              onImageUpload,
+              onImageRemoveAll,
+              onImageUpdate,
+              onImageRemove,
+              isDragging,
+              dragProps,
+            }) => (
+              <div className="upload__image-wrapper flex justify-between w-[262px] sm:w-[422px]">
+                <button
+                  className="border border-border-gray rounded-sm h-[44px] w-[262px] sm:w-[370px] pl-2"
+                  style={isDragging ? { color: "red" } : undefined}
+                  onClick={onImageUpload}
+                  {...dragProps}
+                >
+                  Click or Drop here
+                </button>
+                &nbsp;
+                <button
+                  className="flex justify-center align-center text-[#205CD4] w-[44px] h-[44px] border border-border-gray rounded-sm"
+                  onClick={onImageRemoveAll}
+                >
+                  <img className="mt-3" src={trashIcon} />
+                </button>
+                {imageList.map((image, index) => (
+                  <div key={index} className="image-item">
+                    <img
+                      src={image["data_url"]}
+                      alt=""
+                      className="w-[100px] sm:w-[200px]"
+                    />
+                    <div className="image-item__btn-wrapper">
+                      <button
+                        className="border border-border-gray rounded-sm "
+                        onClick={() => onImageUpdate(index)}
+                      >
+                        Change
+                      </button>
+                      <button
+                        className="border border-border-gray rounded-sm "
+                        onClick={() => onImageRemove(index)}
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </ImageUploading>
+        </div>
         <button
           className=" rounded-sm font-inter-medium text-[color:white]  w-[262px] sm:w-[422px] h-[44px] bg-deep-blue "
           onClick={click}
         >
           Create free account
         </button>
-
         {/* <button
           onClick={click}
           disabled={!email || !password}
