@@ -3,6 +3,7 @@ const CustomerModel = require("../models/customerModel");
 const jwt = require("jsonwebtoken");
 const SECRET_KEY = "default_secret";
 const bcrypt = require("bcrypt");
+const CompanyModel = require("../models/companyModel");
 
 exports.getComments = async (req, res) => {
   try {
@@ -12,20 +13,29 @@ exports.getComments = async (req, res) => {
       data: comments,
     });
   } catch (error) {
-    return res.status(400), json({ message: error, data: null });
+    return res.status(400);
   }
 };
 
 exports.getComment = async (req, res) => {
   const { id } = req.params;
   try {
+    let average = 0;
     const comments = await CommentModel.find({ companyId: id });
+    comments.map(async(item, index)=> {
+      average += item.rate;
+    })
+    average = average / comments.length;
+    const ratingCalculated = await CompanyModel.findOneAndUpdate(
+      { _id: id },
+      { rating: average }
+    );
     return res.status(200).json({
       message: true,
       data: comments,
     });
   } catch (error) {
-    return res.status(400), json({ message: error, data: null });
+    return res.status(400);
   }
 };
 
