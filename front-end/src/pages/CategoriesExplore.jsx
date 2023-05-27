@@ -1,11 +1,16 @@
+import KhasBank from "../assets/KhasBank.png";
+import KhaanBank from "../assets/KhaanBank.png";
+import GolomtBank from "../assets/GolomtBank.png";
+import tdbBank from "../assets/tdbBank.png";
+import TuriinBank from "../assets/TuriinBank.png";
+import capitronBank from "../assets/capitronBank.png";
+
 import React, { useEffect, useContext } from "react";
 import { ExploreCategoriesComp } from "../components/ExploreCategoriesComp";
 import { ContactInfoComp } from "../components/ContactInfoComp";
 import { CategoryExploreRatingComp } from "../components/CategoryExploreRatingComp";
 import { CompanyReviewedComp } from "../components/CompanyReviewedComp";
 // import { RatingStarsComp } from "../components/RatingStarsComp";
-import dugood from "../assets/dugood.png";
-import southend from "../assets/SouthEnd.png";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Context } from "../components/DataContext";
@@ -29,27 +34,66 @@ export const CategoriesExplore = (props) => {
           </p>
         </div>
 
-        <div className="w-[screen] h-[auto] bg-[#FCFBF3] flex flex-row items-center justify-center md-flex">
-          <div className="flex flex-start">
-            <CategoryExploreRatingComp />{" "}
-          </div>
+        <div className="w-[screen] h-[auto] bg-[#FCFBF3] flex flex-row  justify-center ">
+          <div className="flex flex-col w-[6vw] bg-[#FCFBF3] items-center jusitify-center ">
+            <CompanyReviewedComp
+              companyName={"Khaan Bank"}
+              rate={5}
+              reviews={"Good"}
+              bg={KhaanBank}
+            />
 
-          <div className="flex flex-col w-[880px] bg-[#FCFBF3] items-center jusitify-center md-flex">
-            {companiesList
-              ? companiesList.map((el, index) => {
-                  return (
-                    <CompanyReviewedComp
-                      companyName={el.companyName}
-                      rating={el.rating}
-                      key={index}
-                      link={el.link}
-                      reviews={el.reviews}
-                    />
-                  );
-                })
-              : ""}
+            <CompanyReviewedComp
+              companyName={"Khas Bank"}
+              rate={5}
+              reviews={"Good"}
+              bg={KhasBank}
+            />
+
+            <CompanyReviewedComp
+              companyName={"Golomt Bank"}
+              rate={5}
+              reviews={"Good"}
+              bg={GolomtBank}
+            />
+
+            <CompanyReviewedComp
+              companyName={"TDB Bank"}
+              rate={5}
+              reviews={"Good"}
+              bg={tdbBank}
+            />
+
+            <CompanyReviewedComp
+              companyName={"Turiin Bank"}
+              rate={4.8}
+              reviews={"Good"}
+              bg={TuriinBank}
+            />
+
+            <CompanyReviewedComp
+              companyName={"Capitron Bank"}
+              rate={4.6}
+              reviews={"Good"}
+              bg={capitronBank}
+            />
+            <div className="h-[40px] bg-[#FCFBF3]"></div>
+            <div className="flex flex-col w-[880px] bg-[#FCFBF3] items-center jusitify-center md-flex">
+              {companiesList
+                ? companiesList.map((el, index) => {
+                    return (
+                      <CompanyReviewedComp
+                        companyName={el.companyName}
+                        rating={el.rating}
+                        key={index}
+                        link={el.link}
+                        reviews={el.reviews}
+                      />
+                    );
+                  })
+                : ""}
+            </div>
           </div>
-          {/* <ContactInfoComp /> */}
         </div>
       </div>
     </>
