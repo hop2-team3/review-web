@@ -2,10 +2,10 @@ import React from "react";
 import { RatingStarsComp } from "../RatingStarsComp/RatingStarsComp";
 
 export const ReviewCarouselComp = (props) => {
-  const colors = ["blue", "green", "yellow", "cyan"];
+  const colors = ["#AFD3E2", "#19A7CE", "#146C94", "#F6F1F1"];
   const color = colors[Math.floor(Math.random() * colors.length)];
   return (
-    <div className="w-[360px] h-auto p-[25px] bg-[white] rounded-[8px] flex flex-col gap-[8px] hover:shadow-[3px_3px_2px_0px_gray] hover:scale-[1.01]">
+    <div className="w-[360px] h-auto p-[25px] bg-[white] rounded-[8px] flex flex-col gap-[8px] hover:shadow-[3px_3px_2px_0px_gray] hover:scale-[1.01] p-[8px]  ">
       <div className="flex items-center gap-[8px]">
         <div
           style={{ backgroundColor: color }}
