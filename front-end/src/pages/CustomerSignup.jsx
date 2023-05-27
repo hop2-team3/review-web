@@ -63,12 +63,12 @@ export const CustomerSignUp = () => {
   };
 
   return (
-    <div className="h-full w-screen bg-forest-green flex flex-row justify-center items-center gap-10 sm:flex flex-wrap sm:h-screen">
+    <div className="h-full w-screen bg-[#146C94] flex flex-row justify-center items-center gap-10 sm:flex flex-wrap sm:h-screen">
       <div className="w-[556px] flex flex-col justify-center items-center">
-        <div className="text-[#04DA8D] text-[32px] font-bold font-inter w-[326px] sm:text-[40px] sm:w-[556px]">
+        <div className="text-[#AFD3E2] text-[32px] font-bold font-inter w-[326px] sm:text-[40px] sm:w-[556px]">
           Create your free Trustpilot account
         </div>
-        <div className=" text-[#04DA8D] text-[24px] font-bold font-inter w-[326px] sm:text-[32px] sm:w-[556px]">
+        <div className=" text-[#AFD3E2] text-[24px] font-bold font-inter w-[326px] sm:text-[32px] sm:w-[556px]">
           Start writing reviews today
         </div>
       </div>
